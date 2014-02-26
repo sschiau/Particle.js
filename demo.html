@@ -1,0 +1,42 @@
+<!--
+
+	Author: Silviu Schiau (@sschiau on Twitter)
+	Web: www.schiau.co
+	File: Demo.html
+	Created: 1393394887905 (UNIX Time)
+	Modified: 1393394887905 (UNIX Time)
+	About: JavaScript implementation of Twitter Snowflake ID Generator (Extended to 42bits epoch for 96 years 1 month 21 days 16 hours 42 minutes 24 seconds in the future)
+	License: Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
+
+	Thanks to Twitter for Snowflake.
+	This header should NOT be removed if you want to use Particle.
+
+-->
+
+<html>
+
+    <head>
+    
+        <script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Particle.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script>
+            
+            $(document).ready(function () 
+            {
+                var machine_id = 1;
+                var particle = new Particle();
+                
+                console.log(particle.generateParticle(machine_id));
+                console.log(particle.timeFromParticle(18014406389480264));
+            });
+
+        </script>
+    
+    </head>
+    
+    <body>
+    
+    </body>
+
+</html>
