@@ -1,15 +1,27 @@
 <!--
 
-	Author: Silviu Schiau (@sschiau on Twitter)
-	Web: www.schiau.co
-	File: Demo.html
-	Created: 1393394887905 (UNIX Time)
-	Modified: 1393394887905 (UNIX Time)
-	About: JavaScript implementation of Twitter Snowflake ID Generator (Extended to 42bits epoch for 96 years 1 month 21 days 16 hours 42 minutes 24 seconds in the future)
-	License: Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
-
-	Thanks to Twitter for Snowflake.
-	This header should NOT be removed if you want to use Particle.
+    * Copyright 2014 Silviu Schiau.
+    *
+    * This copyright notice
+    * shall be included in all copies or substantial portions of the software.
+    *
+    * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+    * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+    * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    * DEALINGS IN THE SOFTWARE.
+    *
+    * @about JavaScript implementation of Twitter Snowflake ID Generator (64 bit ID)
+    * @author Silviu Schiau <pr@silviu.co>
+    * @package Schiau
+    * @created 1393394887 (UNIX Time)
+    * @modified 1418950507 (UNIX Time)
+    * @version 1.0.1
+    * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
+    *
+    * Thanks to Twitter for Snowflake.
 
 -->
 
@@ -26,9 +38,11 @@
             {
                 var machine_id = 1;
                 var particle = new Particle();
+				
+				var newID = particle.generateParticle(machine_id);
                 
-                console.log(particle.generateParticle(machine_id));
-                console.log(particle.timeFromParticle(18014406389480264));
+                console.log(newID);
+                console.log(particle.timeFromParticle(newID));
             });
 
         </script>
