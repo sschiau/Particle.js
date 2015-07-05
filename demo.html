@@ -1,6 +1,6 @@
 <!--
 
-    * Copyright 2014 Silviu Schiau.
+    * Copyright 2014-2015 Silviu Schiau.
     *
     * This copyright notice
     * shall be included in all copies or substantial portions of the software.
@@ -17,8 +17,8 @@
     * @author Silviu Schiau <pr@silviu.co>
     * @package Schiau
     * @created 1393394887 (UNIX Time)
-    * @modified 1418950507 (UNIX Time)
-    * @version 1.0.1
+    * @modified 1436130991843 (UNIX Time)
+    * @version 1.0.2
     * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
     *
     * Thanks to Twitter for Snowflake.
@@ -29,13 +29,11 @@
 
     <head>
     
-        <script src="http://code.jquery.com/jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="Particle.js" type="text/javascript" charset="utf-8"></script>
         
         <script>
             
-            $(document).ready(function () 
-            {
+            window.onload = function () {
                 var machine_id = 1;
                 var particle = new Particle();
 				
@@ -43,7 +41,7 @@
                 
                 console.log(newID);
                 console.log(particle.timeFromParticle(newID));
-            });
+            };
 
         </script>
     
