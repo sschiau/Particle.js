@@ -17,8 +17,3 @@ You should use NTP to keep your system clock accurate.
 
 ## How to use it
 Check Demo.html
-
-
-## License
-Apache License Version 2.0
-http://www.apache.org/licenses/LICENSE-2.0.txt
