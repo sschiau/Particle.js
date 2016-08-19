@@ -1,13 +1,13 @@
 {
-  "name": "Particle",
-  "version": "1.0.1",
+  "name": "sschiau/Particle",
+  "version": "1.1.0",
   "description": "JavaScript ID Generator | Implementation of Twitter Snowflake ID Generator (64 bit ID)",
   "repository": "git@github.com:sschiau/Particle.js.git",
   "homepage": "https://github.com/sschiau/Particle.js",
   "bugs": "https://github.com/sschiau/Particle.js/issues",
   "author": "Silviu Schiau",
-  "license": "./LICENSE.md",
-  "main": "Particle.js",
+  "license": "LICENSE.md",
+  "main": "./Sources/Particle.js",
   "dependencies": {},
   "devDependencies": {}
 }
