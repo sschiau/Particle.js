@@ -3,6 +3,8 @@
 ####64bits int Time Based ID Generator
 JavaScript implementation of Twitter Snowflake ID Generator
 
+[![NPM](https://nodei.co/npm/Particle.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/Particle/)
+
 ### Uncoordinated
 For high availability within and across data centers, machines generating ids should not have to coordinate with each other.
 
@@ -16,4 +18,4 @@ For high availability within and across data centers, machines generating ids sh
 You should use NTP to keep your system clock accurate.
 
 ## How to use it
-Check Demo.html
+Check [Demo](https://github.com/sschiau/Particle.js/blob/master/Demo/index.html)
