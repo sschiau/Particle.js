@@ -14,7 +14,7 @@
  *
  * @about JavaScript implementation of Twitter Snowflake ID Generator (64 bit ID)
  * @author Silviu Schiau <pr@silviu.co>
- * @version 1.1.0
+ * @version 1.2.0
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
@@ -25,7 +25,7 @@
 (function() {
     var undefined;
 
-    var _version = '1.1.0';
+    var _version = '1.2.0';
     var _author = 'Silviu Schiau';
 
     var _self = typeof self == 'object' && self && self.Object === Object && self;
@@ -40,8 +40,8 @@
         if (isNaN(_machineId)) {
             throw new Error("Machine ID should be digits only and not undefined");
         } else {
-            if (_machineId < 1 || _machineId > 512 ) {
-                throw new Error("Enter a valid machine id range [1-512]");
+            if (_machineId < 0 || _machineId > 1023 ) {
+                throw new Error("Enter a valid machine id range [0-1024]");
             }
         }
 
@@ -54,6 +54,19 @@
         }
     }
 
+    String.prototype.lpad = function(padString, length) {
+        var str = this;
+
+        while (str.length < length) {
+            str = padString + str;
+        }
+
+        return str;
+    }
+
+    var max12bit = 4095;
+    var max41bit = 1099511627775;
+
     var Particle = {
         version: _version,
         author: _author,
@@ -65,21 +78,20 @@
 
             validate(_machineId, _epoch);
 
-            // Time - 41 bits
+            // Time - 42 bits
             var time = Math.floor(new Date());
 
             // Substract custom epoch from current time
             time -= _epoch;
 
             // Create a base and add time to it
-            var base = (Math.pow(2, 40) - 1 + time).toString(2);
+            var base = (max41bit + time).toString(2);
 
-            // Configured machine id - 10 bits - up to 512 machines
-            var machineId = (Math.pow(2, 9) - 1 + _machineId).toString(2);
+            // Configured machine id - 10 bits - up to 1024 machines
+            var machineId = _machineId.toString(2).lpad("0", 10);
 
-            // Sequence number - 12 bits - up to 2048 random numbers per machine
-            var random = generateRandomInt(1, (Math.pow(2, 11) - 1))
-            random = (Math.pow(2, 11) - 1 + random).toString(2);
+            // Sequence number - 12 bits - up to 4096 random numbers per machine
+            var random = generateRandomInt(0, max12bit).toString(2).lpad("0", 12);
 
             // Pack
             var base = base + machineId + random;
@@ -91,7 +103,7 @@
             return returnParticle;
         },
         timeFromParticle: function(particle) {
-            return parseInt(particle.toString(2).substring(0, 41), 2) - Math.pow(2, 40) - 1 + this.epoch;
+            return parseInt(particle.toString(2).substring(0, 41), 2) - max41bit + this.epoch;
         }
     }
 
