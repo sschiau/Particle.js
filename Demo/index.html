@@ -15,7 +15,7 @@
     *
     * @about JavaScript implementation of Twitter Snowflake ID Generator (64 bit ID)
     * @author Silviu Schiau <pr@silviu.co>
-    * @version 1.1.0
+    * @version 1.2.0
     * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
     *
     * Thanks to Twitter for Snowflake.
@@ -32,8 +32,8 @@
         <script>
 
             window.onload = function () {
-                Particle.machineId = 1;
-                Particle.epoch = 1471562385000;
+                Particle.machineId = 0;
+                Particle.epoch = 1479533469598;
 
                 var particle = Particle.generateParticle();
                 var timeFromParticle = Particle.timeFromParticle(particle);
