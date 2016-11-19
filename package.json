@@ -1,6 +1,6 @@
 {
   "name": "Particle",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "JavaScript ID Generator | Implementation of Twitter Snowflake ID Generator (64 bit ID)",
   "repository": "git@github.com:sschiau/Particle.js.git",
   "homepage": "https://github.com/sschiau/Particle.js",

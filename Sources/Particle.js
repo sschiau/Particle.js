@@ -14,7 +14,7 @@
  *
  * @about JavaScript implementation of Twitter Snowflake ID Generator (64 bit ID)
  * @author Silviu Schiau <pr@silviu.co>
- * @version 1.2.0
+ * @version 2.0.0
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
@@ -25,7 +25,7 @@
 (function() {
     var undefined;
 
-    var _version = '1.2.0';
+    var _version = '2.0.0';
     var _author = 'Silviu Schiau';
 
     var _self = typeof self == 'object' && self && self.Object === Object && self;
