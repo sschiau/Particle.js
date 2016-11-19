@@ -1,5 +1,5 @@
 #Particle
-####Language: JavaScript 
+####Language: JavaScript
 ####64bits int Time Based ID Generator
 JavaScript implementation of Twitter Snowflake ID Generator
 
@@ -10,9 +10,9 @@ For high availability within and across data centers, machines generating ids sh
 
 ### Solution
 * id (64 bits) is composed of:
-  * time - 41 bits (millisecond precision w/ a custom epoch)
-  * configured machine id - 10 bits - up to 512 machines
-  * sequence number - 12 bits - up to 2048 random numbers
+  * time - 42 bits (millisecond precision w/ a custom epoch)
+  * configured machine id - 10 bits - up to 1024 machines
+  * sequence number - 12 bits - up to 4096 random numbers
 
 ### System Clock Dependency
 You should use NTP to keep your system clock accurate.
