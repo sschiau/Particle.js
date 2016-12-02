@@ -1,6 +1,6 @@
 {
   "name": "Particle",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "JavaScript ID Generator | Implementation of Twitter Snowflake ID Generator (64 bit ID)",
   "repository": "git@github.com:sschiau/Particle.js.git",
   "homepage": "https://github.com/sschiau/Particle.js",
@@ -8,6 +8,36 @@
   "author": "Silviu Schiau",
   "license": "LICENSE.md",
   "main": "./Sources/Particle.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testRegex": "(/Tests/.*|\\.(test|spec))\\.(js|jsx)$",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "Sources/**/*.{js,jsx}",
+      "!**/node_modules/**"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "coverageDirectory": "__TestsCoverage",
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 93.75,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^17.0.3"
+  }
 }
