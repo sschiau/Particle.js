@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sschiau/Particle.js.svg?branch=master)](https://travis-ci.org/sschiau/Particle.js)
+
 #Particle
 ####Language: JavaScript
 ####64bits int Time Based ID Generator
