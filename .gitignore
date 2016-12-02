@@ -28,6 +28,9 @@
 # + NPM
 node_modules
 
+# + Tests / Coverage
+__TestsCoverage
+
 # +----------------------------+
 # | Files extensions to ignore |
 # +----------------------------+
