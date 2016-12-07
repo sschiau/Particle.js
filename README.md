@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/sschiau/Particle.js.svg?branch=master)](https://travis-ci.org/sschiau/Particle.js)
+(https://codecov.io/gh/sschiau/Particle.js?branch=master)
 
 #Particle
 ####Language: JavaScript
