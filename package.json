@@ -9,7 +9,7 @@
   "license": "LICENSE.md",
   "main": "./Sources/Particle.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest && codecov"
   },
   "jest": {
     "testRegex": "(/Tests/.*|\\.(test|spec))\\.(js|jsx)$",
