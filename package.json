@@ -38,6 +38,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "codecov": "^1.0.1",
     "jest": "^17.0.3"
   }
 }
