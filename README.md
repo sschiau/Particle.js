@@ -1,12 +1,12 @@
 [![Build Status](https://travis-ci.org/sschiau/Particle.js.svg?branch=master)](https://travis-ci.org/sschiau/Particle.js)
 [![codecov.io](https://codecov.io/gh/sschiau/Particle.js/coverage.svg?branch=master)](https://codecov.io/gh/sschiau/Particle.js?branch=master)
 
+[![NPM](https://nodei.co/npm/Particle.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/Particle/)
+
 #Particle
 ####Language: JavaScript
 ####64bits int Time Based ID Generator
 JavaScript implementation of Twitter Snowflake ID Generator
-
-[![NPM](https://nodei.co/npm/Particle.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/Particle/)
 
 ### Uncoordinated
 For high availability within and across data centers, machines generating ids should not have to coordinate with each other.
