@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2016 Silviu Schiau.
+ * Copyright 2014-2017 Silviu Schiau.
  *
  * This copyright notice
  * shall be included in all copies or substantial portions of the software.
@@ -14,7 +14,7 @@
  *
  * @about JavaScript implementation of Twitter Snowflake ID Generator (64 bit ID)
  * @author Silviu Schiau <pr@silviu.co>
- * @version 2.2.0
+ * @version 2.2.1
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.

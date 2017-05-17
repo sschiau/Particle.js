@@ -1,6 +1,6 @@
 <!--
 
-    * Copyright 2014-2016 Silviu Schiau.
+    * Copyright 2014-2017 Silviu Schiau.
     *
     * This copyright notice
     * shall be included in all copies or substantial portions of the software.
@@ -15,7 +15,7 @@
     *
     * @about JavaScript implementation of Twitter Snowflake ID Generator (64 bit ID)
     * @author Silviu Schiau <pr@silviu.co>
-    * @version 2.2.0
+    * @version 2.2.1
     * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
     *
     * Thanks to Twitter for Snowflake.
@@ -23,37 +23,30 @@
 -->
 
 <html>
+<head>
+  <script src="http://momentjs.com/downloads/moment-with-locales.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../Sources/Particle.js" type="text/javascript" charset="utf-8"></script>
 
-    <head>
+  <script>
+    window.onload = function () {
+      Particle.machineId = 0
+      Particle.epoch = 1479533469598
 
-        <script src="http://momentjs.com/downloads/moment-with-locales.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../Sources/Particle.js" type="text/javascript" charset="utf-8"></script>
+      var particle = Particle.generateParticle()
+      var timeFromParticle = Particle.timeFromParticle(particle)
+      var humanizedDate = moment(timeFromParticle).format('dddd, MMMM Do YYYY, h:mm:ss a SSS')
 
-        <script>
+      document.write('<pre>')
+      document.write('Particle: ' + particle)
+      document.write('<br>')
+      document.write('Time From Particle: ' + timeFromParticle)
+      document.write('<br>')
+      document.write('Humanized UNIX Time: ' + humanizedDate)
+      document.write('</pre>')
+    }
+  </script>
 
-            window.onload = function () {
-                Particle.machineId = 0;
-                Particle.epoch = 1479533469598;
-
-                var particle = Particle.generateParticle();
-                var timeFromParticle = Particle.timeFromParticle(particle);
-                var humanizedDate = moment(timeFromParticle).format("dddd, MMMM Do YYYY, h:mm:ss a SSS");
-
-                document.write("<pre>");
-                document.write("Particle: " + particle);
-                document.write("<br>");
-                document.write("Time From Particle: " + timeFromParticle)
-                document.write("<br>");
-                document.write("Humanized UNIX Time: " + humanizedDate);
-                document.write("</pre>");
-            };
-
-        </script>
-
-    </head>
-
-    <body>
-
-    </body>
-
+</head>
+<body>
+</body>
 </html>
