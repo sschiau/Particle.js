@@ -23,9 +23,7 @@
 'use strict';
 
 (function () {
-  var undefined
-
-  var _version = '2.2.0'
+  var _version = '2.2.1'
   var _author = 'Silviu Schiau'
 
   var _self = typeof self === 'object' && self && self.Object === Object && self
@@ -70,8 +68,8 @@
   var Particle = {
     version: _version,
     author: _author,
-    machineId: undefined,
-    epoch: undefined,
+    machineId: void 0,
+    epoch: void 0,
     generateParticle: function () {
       var _epoch = this.epoch
       var _machineId = this.machineId
