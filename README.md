@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/sschiau/Particle.js.svg?branch=master)](https://travis-ci.org/sschiau/Particle.js)
 [![codecov.io](https://codecov.io/gh/sschiau/Particle.js/coverage.svg?branch=master)](https://codecov.io/gh/sschiau/Particle.js?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/sschiau/Particle.js/badge.svg?targetFile=package.json)](https://snyk.io/test/github/sschiau/Particle.js?targetFile=package.json)
 
 [![NPM](https://nodei.co/npm/Particle.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/Particle/)
 
