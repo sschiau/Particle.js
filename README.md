@@ -4,9 +4,9 @@
 
 [![NPM](https://nodei.co/npm/Particle.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/Particle/)
 
-#Particle
-####Language: JavaScript
-####64bits int Time Based ID Generator
+# Particle
+#### Language: JavaScript
+#### 64bits int Time Based ID Generator
 JavaScript implementation of Twitter Snowflake ID Generator
 
 ### Uncoordinated
