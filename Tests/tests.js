@@ -4,42 +4,42 @@ describe('Errors', () => {
   test('Throw error if MachineId is not set', () => {
     expect(() => {
       Particle.generateParticle()
-    }).toThrowError('Machine ID should be digits only and not undefined')
+    }).toThrow('Machine ID should be digits only and not undefined')
   })
 
   test('Throw error if MachineId is not an integer', () => {
     expect(() => {
       Particle.machineId = 'not an integer'
       Particle.generateParticle()
-    }).toThrowError('Machine ID should be digits only and not undefined')
+    }).toThrow('Machine ID should be digits only and not undefined')
   })
 
   test('Throw error if MachineId is not inside the valid range [0-1023]', () => {
     expect(() => {
       Particle.machineId = 2000
       Particle.generateParticle()
-    }).toThrowError('Enter a valid machine id range [0-1023]')
+    }).toThrow('Enter a valid machine id range [0-1023]')
   })
 
   test('Throw error if Epoch is not undefined', () => {
     expect(() => {
       Particle.machineId = 1
       Particle.generateParticle()
-    }).toThrowError('Epoch should be digits only and not undefined')
+    }).toThrow('Epoch should be digits only and not undefined')
   })
 
   test('Throw error if Epoch is not an integer', () => {
     expect(() => {
       Particle.epoch = 'not an integer'
       Particle.generateParticle()
-    }).toThrowError('Epoch should be digits only and not undefined')
+    }).toThrow('Epoch should be digits only and not undefined')
   })
 
   test('Throw error if Epoch is not 13 digits long', () => {
     expect(() => {
       Particle.epoch = 148065749200
       Particle.generateParticle()
-    }).toThrowError('UNIX time should be in miliseconds (min 13 digits)')
+    }).toThrow('UNIX time should be in miliseconds (min 13 digits)')
   })
 })
 
@@ -62,5 +62,21 @@ describe('Tests', () => {
   test('Retrieve Time From Particle', () => {
     var particle = Particle.generateParticle()
     expect(Particle.timeFromParticle(particle)).toBeGreaterThan(1480657492000)
+  })
+})
+
+describe('Browser global export', () => {
+  test('exports to browser self when it shares the current Object constructor', () => {
+    const browser = { Object }
+    global.self = browser
+    try {
+      jest.isolateModules(() => { require('../Sources/Particle.js') })
+      expect(browser.Particle.version).toBe('3.0.0')
+      browser.Particle.machineId = 1
+      browser.Particle.epoch = 1480657492000
+      expect(browser.Particle.generateParticle()).toBeGreaterThan(0)
+    } finally {
+      delete global.self
+    }
   })
 })

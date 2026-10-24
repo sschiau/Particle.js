@@ -1,6 +1,6 @@
 {
   "name": "Particle",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "description": "64bits int Time Based ID Generator",
   "repository": "git@github.com:sschiau/Particle.js.git",
   "homepage": "https://github.com/sschiau/Particle.js",
@@ -9,7 +9,7 @@
   "license": "LICENSE.md",
   "main": "./Sources/Particle.js",
   "scripts": {
-    "test": "jest && codecov"
+    "test": "jest --runInBand"
   },
   "jest": {
     "testRegex": "(/Tests/.*|\\.(test|spec))\\.(js|jsx)$",
@@ -34,11 +34,20 @@
         "lines": 100,
         "statements": 100
       }
-    }
+    },
+    "testEnvironment": "node"
   },
   "dependencies": {},
   "devDependencies": {
-    "codecov": "3.7.1",
-    "jest": "17.0.3"
-  }
+    "jest": "30.5.2"
+  },
+  "engines": {
+    "node": ">=24.22.1 <25"
+  },
+  "files": [
+    "Sources/Particle.js",
+    "README.md",
+    "LICENSE.md",
+    "CHANGELOG.md"
+  ]
 }
