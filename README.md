@@ -77,6 +77,6 @@ The project pins Node 24.22.1 and Jest 30.5.2. Tests run locally without uploadi
 
 ## Publishing
 
-Releases publish through `.github/workflows/publish.yml` on GitHub-hosted runners using npm trusted publishing. Configure the package on npm with owner `sschiau`, repository `Particle.js`, workflow filename `publish.yml`, no environment name, and permission to use `npm publish`. No npm token is required.
+Releases publish through `.github/workflows/publish.yml` on GitHub-hosted runners using npm trusted publishing. Configure the package on npm with owner `sschiau`, repository `Particle.js`, workflow filename `publish.yml`, environment name `sschiau`, and permission to use `npm publish`. No npm token is required.
 
 Push a version tag matching `package.json` (for example `v3.0.0`), or manually run **Publish to npm** against `main`. The workflow installs the lockfile, runs tests and the dependency audit, then publishes. An existing published npm version cannot be overwritten. The existing v3.0.0 tag predates this workflow; use a manual run on main for its initial publication.
