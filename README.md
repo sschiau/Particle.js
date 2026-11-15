@@ -10,7 +10,7 @@ Exact time-based IDs for JavaScript. Independent generators, `bigint` or decimal
 
 > **v4 release candidate:** this branch contains `4.0.0-rc.1`, which has not been published. npm's stable release is **3.0.3**, whose Number precision and random-sequence limitations still apply. The v4 API and ID format are breaking changes; read the [migration guide](docs/migration-v4.md).
 
-[Try the published v3 demo](https://sschiau.github.io/Particle.js/Demo/mechanics.html) · [Run the v4 candidate demo](#browser-demo) · [API](docs/api.md) · [Compare approaches](docs/comparison.md) · [Benchmarks](docs/benchmarks.md)
+[Try the live v4 candidate demo](https://sschiau.github.io/Particle.js/Demo/mechanics.html) · [Run the v4 candidate demo](#browser-demo) · [API](docs/api.md) · [Compare approaches](docs/comparison.md) · [Benchmarks](docs/benchmarks.md)
 
 ![Particle mechanics and deployment diagram](docs/mechanics-preview.jpg)
 
@@ -125,7 +125,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 </script>
 ```
 
-The candidate demo uses local ES modules and styles under a restrictive CSP. Its optional held clock demonstrates counters without animation. GitHub Pages publishes **main**; the public demo changes when the reviewed candidate is merged.
+The candidate demo uses local ES modules and styles under a restrictive CSP. Its optional held clock demonstrates counters without animation. GitHub Pages publishes **main**. The live diagram demonstrates this unpublished v4 candidate; npm’s stable release remains v3.0.3.
 
 ## Contribute
 
