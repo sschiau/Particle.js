@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.3 — 2026-11-15
+
+- Publish the updated README with the live GitHub Pages demo link.
+- Add the light-theme mechanics and deployment diagrams, local demo assets, and restrictive Content Security Policy to the repository.
+- Add a security regression test covering malicious and invalid demo input, inert error rendering, no-eval execution, and restoration of the clock and random function.
+- Update version metadata and demo installation examples to 3.0.3.
+
 ## 3.0.2 — 2026-11-15
 
 - Pin development and publishing to Node 26.13.1 and support Node 26 alongside the existing Node 24 range.

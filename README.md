@@ -11,7 +11,7 @@ A small JavaScript library for generating time-based numeric identifiers and ext
 ## Install
 
 ```sh
-npm install Particle@3.0.2
+npm install Particle@3.0.3
 ```
 
 Supported Node.js versions are **24.22.1 or newer within Node 24.x**, or **26.13.1 or newer within Node 26.x**. Development and publishing use Node 26.13.1. See [release notes](CHANGELOG.md) for compatibility changes.
@@ -85,4 +85,4 @@ The project pins Node 26.13.1 and uses its built-in test runner, assertions, and
 
 Releases publish through `.github/workflows/publish.yml` on GitHub-hosted runners using npm trusted publishing. Configure the package on npm with owner `sschiau`, repository `Particle.js`, workflow filename `publish.yml`, environment name `sschiau`, and permission to use `npm publish`. No npm token is required.
 
-Push a version tag matching `package.json` (for example `v3.0.2`), or manually run **Publish to npm** against `main`. The workflow installs the lockfile, runs tests and the dependency audit, then publishes. An existing published npm version cannot be overwritten.
+Push a version tag matching `package.json` (for example `v3.0.3`), or manually run **Publish to npm** against `main`. The workflow installs the lockfile, runs tests and the dependency audit, then publishes. An existing published npm version cannot be overwritten.
