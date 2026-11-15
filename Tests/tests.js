@@ -81,7 +81,7 @@ describe('Browser global export', () => {
     global.self = browser
     try {
       runInThisContext(readFileSync(sourcePath, 'utf8'), { filename: sourcePath })
-      assert.equal(browser.Particle.version, '3.0.0')
+      assert.equal(browser.Particle.version, '3.0.1')
       browser.Particle.machineId = 1
       browser.Particle.epoch = 1480657492000
       const particle = browser.Particle.generateParticle()

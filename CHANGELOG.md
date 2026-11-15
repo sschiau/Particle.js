@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.0.1 — 2026-11-15
+
+### Changes
+
+- Replace Jest with Node's built-in test runner and assertions, removing all npm development dependencies, including transitive deepmerge.
+- Preserve all 10 tests, including the browser-global export check.
+- Use V8 coverage with the existing 100% line/function and 93.75% branch minimums. Coverage prints locally; the separate statement threshold and previous JSON/LCOV reports are no longer generated.
+- Update package and exported version metadata. Library behavior and Node 24 requirements remain the same.
+
+### Validation
+
+- Clean npm ci installation.
+- 10 tests passing with 100% V8 line, branch, and function coverage.
+- npm audit and npm audit --omit=dev: zero affected packages at release preparation.
+
 ## 3.0.0 — 2026-10-24
 
 ### Breaking compatibility change
