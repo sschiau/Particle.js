@@ -4,6 +4,8 @@
 
 A small JavaScript library for generating time-based numeric identifiers and extracting their timestamps. Works in Node.js and browsers, with no runtime dependencies.
 
+[Try the interactive demo](https://sschiau.github.io/Particle.js/Demo/mechanics.html) — explore the system diagram, generate an ID, and see how to configure multiple services.
+
 > **Known limitation:** identifiers are represented as JavaScript `Number`, which cannot preserve all 64-bit integer values. Distinct identifiers can collide. Random sequence selection can also repeat. Avoid this version where guaranteed uniqueness is required, and never use its identifiers as authentication tokens.
 
 ## Install
@@ -46,7 +48,7 @@ Serve `Sources/Particle.js` with your application and load it before your own sc
 </script>
 ```
 
-Explore the interactive [mechanics demo](Demo/mechanics.html) for a system diagram, real ID samples, and deployment examples. From the repository root, run `python3 -m http.server 8765 --bind 127.0.0.1` and open [the local demo](http://127.0.0.1:8765/Demo/mechanics.html). The demo uses local scripts and styles under a restrictive Content Security Policy.
+Try the [live mechanics demo](https://sschiau.github.io/Particle.js/Demo/mechanics.html), or inspect its [source](Demo/mechanics.html). To run it locally, use `python3 -m http.server 8765 --bind 127.0.0.1` from the repository root and open [the local demo](http://127.0.0.1:8765/Demo/mechanics.html). The demo uses local scripts and styles under a restrictive Content Security Policy. GitHub Pages publishes the repository root from `main`, so the live demo updates when changes are pushed there.
 
 The optional `Demo/index.html` uses an old external HTTP Moment.js URL that may fail. The library itself does not need Moment.js.
 
