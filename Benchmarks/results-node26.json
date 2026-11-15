@@ -1,0 +1,181 @@
+{
+  "node": "v26.13.1",
+  "cpu": "Apple M1 Max",
+  "count": 100000,
+  "layout": {
+    "timeBits": 40,
+    "machineBits": 10,
+    "counterBits": 3,
+    "idsPerMillisecondPerAllocation": 8
+  },
+  "hashes": {
+    "source": "7b6097db31b52f6914525269e90ba122c38b44e318f7050cbbff3036c086a338",
+    "payload": "8e49192f04d9a01913efb0b4a16f057191724e0e3aa986669c89868da32de55b",
+    "legacy": "57da991f74f3237a9ae2a55105649877cc6fd9a3ce6511f31f0d54f28455c330"
+  },
+  "method": "Live issuance uses the unchanged synchronous API and fresh native Date.now readings. An application helper awaits a 1ms timer only on sequence exhaustion. One 100000-ID live run includes scheduling/backpressure. JSON is default; optional binary uses the identical exact-ID corpus. Payload medians cover nine warmed encode/copy/decode+safe-integer-validation samples, alternating codec order; no network or database. Issuance and codec timings are reported separately. The original v3.0.3 diagnostic runs in an isolated VM and returns rounded/colliding Numbers; its timing is not a fair correctness-equivalent speed ratio.",
+  "issuance": {
+    "generationMs": 16025.389375,
+    "outputs": 100000,
+    "distinct": 100000,
+    "capacityRetries": 12690,
+    "theoreticalMinimumApproxMs": 12500
+  },
+  "payload": {
+    "json": {
+      "encodeMs": 2.358083999999508,
+      "copyMs": 0.09070799999972223,
+      "decodeMs": 3.8227919999990263,
+      "totalMs": 6.080915999998979,
+      "payloadBytes": 1700009,
+      "maximumObservedMs": 7.802166999999827
+    },
+    "binary": {
+      "encodeMs": 0.5978329999998095,
+      "copyMs": 0.06895799999983865,
+      "decodeMs": 1.6139170000005834,
+      "totalMs": 2.2951670000002196,
+      "payloadBytes": 800008,
+      "maximumObservedMs": 6.043750000000728
+    }
+  },
+  "runs": {
+    "json": [
+      {
+        "encodeMs": 2.8685829999994894,
+        "copyMs": 0.12045900000157417,
+        "decodeMs": 4.813124999998763,
+        "totalMs": 7.802166999999827,
+        "payloadBytes": 1700009
+      },
+      {
+        "encodeMs": 2.358083999999508,
+        "copyMs": 0.11116600000059407,
+        "decodeMs": 3.818959000000177,
+        "totalMs": 6.288209000000279,
+        "payloadBytes": 1700009
+      },
+      {
+        "encodeMs": 2.2156660000000556,
+        "copyMs": 0.0391669999989972,
+        "decodeMs": 3.826082999999926,
+        "totalMs": 6.080915999998979,
+        "payloadBytes": 1700009
+      },
+      {
+        "encodeMs": 2.131042000000889,
+        "copyMs": 0.038708000000042375,
+        "decodeMs": 3.8227919999990263,
+        "totalMs": 5.992541999999958,
+        "payloadBytes": 1700009
+      },
+      {
+        "encodeMs": 2.364166999999725,
+        "copyMs": 0.20304100000066683,
+        "decodeMs": 4.929791999998997,
+        "totalMs": 7.496999999999389,
+        "payloadBytes": 1700009
+      },
+      {
+        "encodeMs": 2.3390830000007554,
+        "copyMs": 0.09070799999972223,
+        "decodeMs": 3.2780000000002474,
+        "totalMs": 5.707791000000725,
+        "payloadBytes": 1700009
+      },
+      {
+        "encodeMs": 2.415707999998631,
+        "copyMs": 0.0542089999999007,
+        "decodeMs": 3.477208000000246,
+        "totalMs": 5.947124999998778,
+        "payloadBytes": 1700009
+      },
+      {
+        "encodeMs": 2.3353749999987485,
+        "copyMs": 0.1595000000015716,
+        "decodeMs": 3.8534579999995913,
+        "totalMs": 6.348332999999911,
+        "payloadBytes": 1700009
+      },
+      {
+        "encodeMs": 2.4723749999993743,
+        "copyMs": 0.06437499999992724,
+        "decodeMs": 3.1464169999999285,
+        "totalMs": 5.68316699999923,
+        "payloadBytes": 1700009
+      }
+    ],
+    "binary": [
+      {
+        "encodeMs": 0.8506670000006125,
+        "copyMs": 0.13162499999998545,
+        "decodeMs": 1.7116249999999127,
+        "totalMs": 2.6939170000005106,
+        "payloadBytes": 800008
+      },
+      {
+        "encodeMs": 0.7824170000003505,
+        "copyMs": 0.10916600000018661,
+        "decodeMs": 1.7617090000003373,
+        "totalMs": 2.6532920000008744,
+        "payloadBytes": 800008
+      },
+      {
+        "encodeMs": 0.7386669999996229,
+        "copyMs": 0.01937499999985448,
+        "decodeMs": 1.5633749999997235,
+        "totalMs": 2.321416999999201,
+        "payloadBytes": 800008
+      },
+      {
+        "encodeMs": 1.2568339999997988,
+        "copyMs": 0.06308300000091549,
+        "decodeMs": 4.723833000000013,
+        "totalMs": 6.043750000000728,
+        "payloadBytes": 800008
+      },
+      {
+        "encodeMs": 0.540791999999783,
+        "copyMs": 0.07616600000073959,
+        "decodeMs": 1.678208999999697,
+        "totalMs": 2.2951670000002196,
+        "payloadBytes": 800008
+      },
+      {
+        "encodeMs": 0.5079999999998108,
+        "copyMs": 0.029583999999886146,
+        "decodeMs": 1.5327910000014526,
+        "totalMs": 2.0703750000011496,
+        "payloadBytes": 800008
+      },
+      {
+        "encodeMs": 0.5978329999998095,
+        "copyMs": 0.06895799999983865,
+        "decodeMs": 1.598958999999013,
+        "totalMs": 2.2657499999986612,
+        "payloadBytes": 800008
+      },
+      {
+        "encodeMs": 0.548291999999492,
+        "copyMs": 0.08354099999996834,
+        "decodeMs": 1.6139170000005834,
+        "totalMs": 2.2457500000000437,
+        "payloadBytes": 800008
+      },
+      {
+        "encodeMs": 0.5140410000003612,
+        "copyMs": 0.026125000000320142,
+        "decodeMs": 1.5041249999994761,
+        "totalMs": 2.0442910000001575,
+        "payloadBytes": 800008
+      }
+    ]
+  },
+  "legacyDiagnostic": {
+    "generationMs": 228.12158400000044,
+    "outputs": 100000,
+    "distinct": 1141,
+    "unsafeNumbers": 100000,
+    "warning": "These original outputs are not comparable to 100000 distinct exact IDs."
+  }
+}

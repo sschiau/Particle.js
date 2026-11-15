@@ -15,99 +15,101 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @about JavaScript implementation of Twitter Snowflake ID Generator (64 bit ID)
+ * @about Exact 53-bit Number IDs with the original Particle API (unreleased format)
  * @author Silviu Schiau <pr@silviu.co>
- * @version 3.0.3
+ * @version 4.0.1
  * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
  *
  * Thanks to Twitter for Snowflake.
  */
 
+
+
 'use strict';
 
 (function () {
-  var _version = '3.0.3'
-  var _author = 'Silviu Schiau'
+  var TIME_SCALE = 8192 // 2^13: 10 machine bits and 3 counter bits.
+  var MACHINE_SCALE = 8
+  var MAX_ELAPSED = 1099511627775 // 2^40 - 1 milliseconds, about 34.8 years.
+  var MAX_ID = Number.MAX_SAFE_INTEGER
+  var LEGACY_OFFSET = 1099511627775
+  var LEGACY_SCALE = 4194304
+  var LEGACY_MIN_ID = LEGACY_OFFSET * LEGACY_SCALE
+  var LEGACY_MAX_ID = 9223372036854775808
+  var states = new Map()
+  var cachedConfig
+  var lastTimestamp = -1 // Rollback guard only; every generation reads Date.now.
 
-  var _self = typeof self === 'object' && self && self.Object === Object && self
-  var _root = _self || globalThis
-
-  // Generate random Int in interval
-  function generateRandomInt (min, max) {
-    return Math.floor(Math.random() * (max - min)) + min
+  function fail(code, message) {
+    var error = new RangeError(message)
+    error.code = code
+    throw error
   }
 
-  function validate (_machineId, _epoch) {
-    if (isNaN(_machineId)) {
-      throw new Error('Machine ID should be digits only and not undefined')
-    } else {
-      if (_machineId < 0 || _machineId > 1023) {
-        throw new Error('Enter a valid machine id range [0-1023]')
-      }
-    }
-
-    if (isNaN(_epoch)) {
-      throw new Error('Epoch should be digits only and not undefined')
-    } else {
-      if (_epoch.toString().length < 13) {
-        throw new Error('UNIX time should be in miliseconds (min 13 digits)')
-      }
+  function validateEpoch(epoch) {
+    if (!Number.isSafeInteger(epoch)) throw new TypeError('Epoch must be a safe integer Number in milliseconds')
+    // Leave room for both exact timestamps and the legacy rounded boundary.
+    if (epoch < 1000000000000 || epoch > Number.MAX_SAFE_INTEGER - MAX_ELAPSED - 2) {
+      throw new RangeError('Epoch must have at least 13 digits and room for the supported time range')
     }
   }
 
-  String.prototype.lpad = function (padString, length) {
-    var str = this
-
-    while (str.length < length) {
-      str = padString + str
-    }
-
-    return str
+  function configuration(machineId, epoch) {
+    if (!Number.isInteger(machineId)) throw new TypeError('Machine ID must be an integer Number')
+    if (machineId < 0 || machineId > 1023) throw new RangeError('Enter a valid machine id range [0-1023]')
+    validateEpoch(epoch)
+    var key = epoch + ':' + machineId
+    return { machineId: machineId, epoch: epoch, key: key, state: states.get(key), machineOffset: machineId * MACHINE_SCALE, endTimestamp: epoch + MAX_ELAPSED }
   }
-
-  var max12bit = 4095
-  var max41bit = 1099511627775
 
   var Particle = {
-    version: _version,
-    author: _author,
+    version: '4.0.1', // GitHub review draft; not an npm publication.
+    author: 'Silviu Schiau',
     machineId: void 0,
     epoch: void 0,
     generateParticle: function () {
-      var _epoch = this.epoch
-      var _machineId = this.machineId
-
-      validate(_machineId, _epoch)
-
-      // Time - 42 bits
-      var time = Math.floor(new Date())
-
-      // Substract custom epoch from current time
-      time -= _epoch
-
-      // Create a base and add time to it
-      var base = (max41bit + time).toString(2)
-
-      // Configured machine id - 10 bits - up to 1024 machines
-      var machineId = _machineId.toString(2).lpad('0', 10)
-
-      // Sequence number - 12 bits - up to 4096 random numbers per machine
-      var random = generateRandomInt(0, max12bit).toString(2).lpad('0', 12)
-
-      // Pack
-      base += machineId + random
-
-      // Return
-      var returnParticle = parseInt(base, 2)
-
-      // Return unique time id no
-      return returnParticle
+      var machineId = this.machineId
+      var epoch = this.epoch
+      var config = cachedConfig
+      if (!config || machineId !== config.machineId || epoch !== config.epoch) {
+        config = configuration(machineId, epoch)
+        cachedConfig = config
+      }
+      var now = Date.now()
+      if (!Number.isSafeInteger(now)) throw new RangeError('Clock must return safe integer milliseconds')
+      if (now < epoch) fail('ERR_CLOCK_BEFORE_EPOCH', 'Clock is earlier than the configured epoch')
+      if (now < lastTimestamp) fail('ERR_CLOCK_ROLLBACK', 'Clock moved backwards; wait until it catches up')
+      if (now > config.endTimestamp) fail('ERR_TIMESTAMP_OVERFLOW', '40-bit elapsed timestamp range is exhausted')
+      // A clock callback can reenter generation; look up newly created state too.
+      var state = config.state || states.get(config.key)
+      var sequence = state && state.timestamp === now ? state.sequence + 1 : 0
+      if (sequence > 7) fail('ERR_SEQUENCE_EXHAUSTED', '8 IDs already issued for this machine and epoch in this millisecond; retry after the clock advances')
+      // No cached time, random sequence, bitwise truncation, or unsafe integers.
+      var id = (now - epoch) * TIME_SCALE + config.machineOffset + sequence
+      if (!state) {
+        state = { timestamp: now, sequence: sequence }
+        states.set(config.key, state)
+        config.state = state
+      } else {
+        state.timestamp = now
+        state.sequence = sequence
+      }
+      lastTimestamp = now
+      return id
     },
     timeFromParticle: function (particle) {
-      return parseInt(particle.toString(2).substring(0, 41), 2) - max41bit + this.epoch
+      var epoch = this.epoch
+      validateEpoch(epoch)
+      if (typeof particle !== 'number') throw new TypeError('Particle must be a Number')
+      if (!Number.isInteger(particle) || particle < 0) throw new RangeError('Particle must be a non-negative integer Number')
+      if (particle <= MAX_ID) return Math.floor(particle / TIME_SCALE) + epoch
+      // Valid legacy IDs occupy a disjoint, much larger numeric range.
+      if (particle < LEGACY_MIN_ID || particle > LEGACY_MAX_ID) throw new RangeError('Particle is outside the supported numeric formats')
+      return Math.floor(particle / LEGACY_SCALE) - LEGACY_OFFSET + epoch
     }
   }
 
-  // Export to the global object.
-  _root.Particle = Particle
+  var root = typeof self === 'object' && self && self.Object === Object && self || globalThis
+  root.Particle = Particle
+  if (typeof module === 'object' && module && module.exports) module.exports = Particle
 }.call(this))
