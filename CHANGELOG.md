@@ -2,6 +2,8 @@
 
 ## 4.0.2 — 2026-11-15
 
+- Publish @sschiau/particle@4.0.2 to GitHub Packages through a separate manual publisher; retain all existing CI workflows and npmjs latest/next at 4.0.2.
+
 - Replace the legacy demo’s unpinned HTTP script and inline document.write rendering with a script-free redirect to the local mechanics demo.
 - Use the unmodified official Apache-2.0 license text and retain existing copyright attribution in NOTICE, included in future package archives. Remove conflicting boilerplate from the obsolete demo. These changes retain Apache-2.0 licensing.
 - Set package/runtime version metadata to 4.0.2 and update current project copyright notices to 2014–2026. Keep the original API and ID-generation/codec algorithms unchanged.
