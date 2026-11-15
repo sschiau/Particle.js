@@ -1,6 +1,6 @@
 {
   "name": "Particle",
-  "version": "4.0.0-rc.1",
+  "version": "4.0.0",
   "description": "Exact time-based IDs for JavaScript: BigInt, independent generators, and no runtime dependencies.",
   "repository": {
     "type": "git",
@@ -28,7 +28,8 @@
     "LICENSE.md",
     "CHANGELOG.md",
     "docs/api.md",
-    "docs/migration-v4.md"
+    "docs/migration-v4.md",
+    "docs/readme-mechanics.svg"
   ],
   "type": "commonjs",
   "types": "./Sources/Particle.d.cts",
@@ -57,5 +58,8 @@
   ],
   "devDependencies": {
     "typescript": "7.0.2"
+  },
+  "publishConfig": {
+    "tag": "next"
   }
 }

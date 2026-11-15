@@ -2,7 +2,7 @@
 
 Report suspected vulnerabilities privately to the maintainer at **pr@silviu.co**, or use GitHub's private vulnerability reporting if available. Include the version, a minimal reproduction using synthetic data, impact, and suggested mitigation. Never include production credentials or private records.
 
-Version 3 has documented integer-precision and random-sequence collision limitations. It must not be presented as a guaranteed-unique ID generator. The v4 candidate replaces those mechanisms, but its uniqueness conditions remain part of the API contract; see [the API reference](docs/api.md).
+Version 3 has documented integer-precision and random-sequence collision limitations. It must not be presented as a guaranteed-unique ID generator. v4 replaces those mechanisms, but its uniqueness conditions remain part of the API contract; see [the API reference](docs/api.md).
 
 IDs are predictable identifiers, not secrets, access tokens, or substitutes for authorization. Validate access to every resource independently. Decode externally supplied v4 IDs using the bounded bigint/decimal-string parser; do not coerce them to Number.
 

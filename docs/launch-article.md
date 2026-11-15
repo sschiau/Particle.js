@@ -1,6 +1,6 @@
 # Draft: Rebuilding Particle.js around exact IDs
 
-**Publication status:** draft for review. The v4 candidate is on a development branch and is not yet on npm. Update availability and links after an approved release. This article has not been posted to an external channel.
+**Publication status:** draft for review. v4.0.0 is released under npm’s next tag; latest remains v3.0.3. Verify availability and links before posting. This article has not been posted to an external channel.
 
 Particle.js started as a small JavaScript implementation of time-based identifiers. Its core idea was easy to explain: combine time, a machine number, and a sequence. But the old implementation returned a JavaScript Number and chose sequence values at random. Those decisions limited what users could safely assume about the result.
 
@@ -18,6 +18,6 @@ Local checks cover runtime, security, declarations, and packed consumers. The ex
 
 Before recommending it for a production system, evaluate whether machine allocation, restart safety, and time-based identifiers fit your requirements. UUIDs and database sequences solve different coordination problems and may be a better fit.
 
-Try the candidate from its checkout, read the migration guide, and bring a concrete reproduction or deployment question to the issue tracker. The useful measure of progress is what users can now rely on and reproduce.
+Try v4 with npm install Particle@next, read the migration guide, and bring a concrete reproduction or deployment question to the issue tracker. The useful measure of progress is what users can now rely on and reproduce.
 
 Links to include after release: npm package, release notes, live v4 demo, API contract, migration guide, and reproducible benchmark results.

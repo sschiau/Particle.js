@@ -4,7 +4,7 @@
  * v4 uses exact integers and independent generator state.
  */
 
-export const version = '4.0.0-rc.1'
+export const version = '4.0.0'
 export const DEFAULT_EPOCH = 1767225600000 // 2026-01-01T00:00:00.000Z
 export const MAX_TIMESTAMP = (1n << 41n) - 1n
 export const MAX_ID = (1n << 63n) - 1n

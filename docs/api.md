@@ -1,6 +1,6 @@
 # Particle v4 API
 
-This document describes the unpublished `4.0.0-rc.1` candidate. The v3 API and ID format differ.
+This document describes `4.0.0`, available under npm’s `next` tag. The v3 API and ID format differ.
 
 ## createGenerator(options)
 

@@ -1,4 +1,4 @@
-# Migrating from v3 to the v4 candidate
+# Migrating from v3 to v4
 
 v4 is a new API and ID format. It is not a drop-in patch. Keep existing records and API consumers working in their existing namespace while adding v4 deliberately.
 
@@ -41,7 +41,7 @@ Restart safety belongs to the application: persist/recover the last issued times
 
 ## Rollout
 
-1. Test the candidate tarball in a staging consumer, including declaration resolution and driver serialization.
+1. Test the v4 package in a staging consumer, including declaration resolution and driver serialization.
 2. Add the explicit ID namespace and dual-read logic where old and new records coexist.
 3. Verify allocation, backpressure, clock monitoring, and restart-watermark handling under deployment failures.
 4. Release a clearly versioned API/schema change, migrate clients, and monitor errors and constraint violations.
