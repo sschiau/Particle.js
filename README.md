@@ -1,118 +1,88 @@
-<div align="center">
-
 # Particle.js
 
-### Small IDs. Every bit intact.
-
-Time, a machine number, and a counter.<br>
-One exact integer for the events your system creates.
-
-**[Explore the live demo ↗](https://sschiau.github.io/Particle.js/Demo/mechanics.html)** · [Read the API](docs/api.md)
-
-</div>
-
-<br>
-
-![One millisecond after the epoch, machine 1, and counter 0 combine into the exact ID 4198400.](docs/readme-mechanics.svg)
-
-<p align="center"><strong>63 exact bits</strong> &nbsp; · &nbsp; <strong>4,096 IDs / millisecond / generator</strong> &nbsp; · &nbsp; <strong>Zero runtime dependencies</strong></p>
-
-<br>
-
-> **Meet v4.0.0.** Install this stable major version with `npm install Particle@next`. The default npm tag, `latest`, remains on **3.0.3**, with a different API, ID format, and known precision and random-sequence limitations. [Migrating from v3 →](docs/migration-v4.md)
-
-## An ID in a few lines.
-
-Create a generator once at startup. Give each active generator its own allocated machine number. Keep the resulting ID as a string when it travels through JSON.
-
-```js
-import { createGenerator, decode } from 'Particle'
-
-const generator = createGenerator({ machineId: 1 })
-const id = generator.nextString()
-
-console.log(JSON.stringify({ id }))
-console.log(decode(id).timestamp)
-```
-
-CommonJS works too: `const { createGenerator, decode } = require('Particle')`. Both entry points share one implementation, with TypeScript declarations included.
-
-**Install v4.** Use Node **24.22.1+ in 24.x** or **26.13.1+ in 26.x**. Pin the release in your application:
-
-```sh
-npm install --save-exact Particle@4.0.0
-# Or follow the explicitly selected v4 channel:
-npm install Particle@next
-```
-
-## Three pieces. One exact value.
-
-| Time | Machine | Counter |
-| --- | --- | --- |
-| **When it happened.** Milliseconds since a shared starting point. | **Who made it.** An allocated number from 0 to 1023. | **Which one.** Values from 0 to 4095 within the same millisecond. |
-| 41 bits | 10 bits | 12 bits |
-
-The result uses **63 value bits**, fitting a non-negative signed 64-bit database integer. `next()` returns `bigint`; `nextString()` returns an exact decimal string. Never convert the full ID to JavaScript `Number`.
-
-The default epoch is **2026-01-01 UTC**. Its time range lasts about **69.7 years**. A custom epoch must also be supplied to `decode(id, { epoch })`. IDs increase strictly within one generator; ordering across machines is not a global causal order. Sort decimal strings numerically.
-
-[Explore the format, bounds, and serialization →](docs/api.md)
-
-## Independent generation. Shared responsibility.
-
-Particle fits systems that need compact, time-based integer IDs and control their infrastructure. For example: orders, event records, and correlation across services.
-
-1. **Agree on the recipe.** Pin the same released version, commit the lockfile, and share a stable epoch and format namespace.
-2. **Allocate the numbers.** Each concurrent process or worker needs a different machine ID and one long-lived generator.
-3. **Protect restarts.** Before reusing a machine ID, ensure the clock is beyond every timestamp previously issued with that allocation. Persist/recover a watermark or enforce this through your allocator.
-4. **Keep the original ID.** Pass it through downstream services. Preserve exact values in storage and database drivers, and enforce uniqueness constraints.
-
-Particle does not allocate machine IDs, persist generator state, or synchronize clocks. Two generators with the same machine ID and epoch can collide. IDs are predictable identifiers; use authorization checks for access and a separate mechanism for secrets.
-
-**Need IDs without machine allocation?** UUIDs may fit better. A database sequence may be simpler when central allocation already suits your application. [Compare the tradeoffs →](docs/comparison.md)
-
-## Clear limits. Explicit errors.
-
-The generator reports capacity and clock problems without spinning or consuming sequence state.
-
-| When this happens | What your application does |
-| --- | --- |
-| **4,096 IDs in one millisecond** · `ERR_SEQUENCE_EXHAUSTED` | Apply backpressure or retry after the clock advances. |
-| **Clock moves backward** · `ERR_CLOCK_ROLLBACK` | Alert and wait for it to catch up. Keep the same generator. |
-| **Clock precedes the epoch** · `ERR_CLOCK_BEFORE_EPOCH` | Correct the configuration or clock. |
-| **41-bit time range ends** · `ERR_TIMESTAMP_OVERFLOW` | Plan a new epoch and a separate namespace. |
-
-[Read the full error and restart contract →](docs/api.md#uniqueness-and-restart-contract)
-
-## Built to be inspected.
-
-All **13 runtime and demo tests** pass locally on Node 24.22.1 and Node 26.13.1. Full checks include installed CommonJS/ESM consumers, declaration resolution, no-eval execution, and npm audit. Runtime source has 100% line, branch, and function coverage; coverage is evidence of testing, not proof against every defect.
-
-A reproducible burst experiment returns **4,096 distinct v4 IDs** versus **5 distinct v3 Number values**, with the same machine, epoch, and millisecond and idealized legacy random draws. That result describes this specific precision experiment. It is not a speedup or a universal uniqueness guarantee.
-
-[Method and raw results →](docs/benchmarks.md) · [Run the tests →](CONTRIBUTING.md)
-
-The existing GitHub workflows remain unchanged. The proposed Node 24/26 matrix across Linux, Windows, and macOS is separate and has not run.
-
-## See every bit in your browser.
-
-[Open the live system diagram ↗](https://sschiau.github.io/Particle.js/Demo/mechanics.html) or serve this checkout:
-
-```sh
-python3 -m http.server 8765 --bind 127.0.0.1
-# Open http://127.0.0.1:8765/Demo/mechanics.html
-```
-
-A light, static diagram shows v4 at work. Hold the clock to watch the counter change one click at a time. The demo uses local ES modules under a restrictive CSP. Browser integrations need native ES modules and BigInt; import `Sources/Particle.mjs` from a module script. GitHub Pages deploys `main` independently of npm.
-
----
-
-[![npm latest](https://img.shields.io/npm/v/Particle?label=npm%20latest&style=flat)](https://www.npmjs.com/package/Particle)
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue?style=flat)](LICENSE.md)
 [![Socket score](https://socket.dev/api/badge/npm/package/Particle)](https://socket.dev/npm/package/Particle)
 
-The version badge follows npm’s default `latest` tag (v3.0.3). v4.0.0 is available through `next`; the tag name does not make it a prerelease.
+A small JavaScript library for generating time-based numeric identifiers and extracting their timestamps. Works in Node.js and browsers, with no runtime dependencies.
 
-[Contribute](CONTRIBUTING.md) · [Security](SECURITY.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Changelog](CHANGELOG.md) · [Release checklist](docs/release-checklist.md)
+[Try the interactive demo](https://sschiau.github.io/Particle.js/Demo/mechanics.html) — explore the system diagram, generate an ID, and see how to configure multiple services.
 
-Apache-2.0 · Copyright Silviu Schiau.
+> **Known limitation:** identifiers are represented as JavaScript `Number`, which cannot preserve all 64-bit integer values. Distinct identifiers can collide. Random sequence selection can also repeat. Avoid this version where guaranteed uniqueness is required, and never use its identifiers as authentication tokens.
+
+## Install
+
+```sh
+npm install Particle@3.0.3
+```
+
+Supported Node.js versions are **24.22.1 or newer within Node 24.x**, or **26.13.1 or newer within Node 26.x**. Development and publishing use Node 26.13.1. See [release notes](CHANGELOG.md) for compatibility changes.
+
+## Use in Node.js
+
+The module registers `Particle` on the global object; it does not return the generator through `module.exports`.
+
+```js
+require('Particle')
+const generator = globalThis.Particle
+
+generator.machineId = 1
+generator.epoch = 1480657492000
+
+const id = generator.generateParticle()
+const timestamp = generator.timeFromParticle(id)
+
+console.log({ id, timestamp, date: new Date(timestamp) })
+```
+
+Set `machineId` to an integer from 0 through 1023 and `epoch` to a timestamp in milliseconds with at least 13 digits. Use the same epoch when decoding identifiers. These fields configure a shared singleton; changing them affects subsequent calls.
+
+## Use in a browser
+
+Serve `Sources/Particle.js` with your application and load it before your own script:
+
+```html
+<script src="./Sources/Particle.js"></script>
+<script>
+  Particle.machineId = 1
+  Particle.epoch = 1480657492000
+  console.log(Particle.generateParticle())
+</script>
+```
+
+Try the [live mechanics demo](https://sschiau.github.io/Particle.js/Demo/mechanics.html), or inspect its [source](Demo/mechanics.html). To run it locally, use `python3 -m http.server 8765 --bind 127.0.0.1` from the repository root and open [the local demo](http://127.0.0.1:8765/Demo/mechanics.html). The demo uses local scripts and styles under a restrictive Content Security Policy. GitHub Pages publishes the repository root from `main`, so the live demo updates when changes are pushed there.
+
+The optional `Demo/index.html` uses an old external HTTP Moment.js URL that may fail. The library itself does not need Moment.js.
+
+## API
+
+| Member | Purpose |
+| --- | --- |
+| `machineId` | Configured machine identifier, from 0 to 1023 |
+| `epoch` | Custom epoch in milliseconds |
+| `generateParticle()` | Generate a numeric identifier; throws when configuration fails validation |
+| `timeFromParticle(id)` | Recover a timestamp using the configured epoch |
+| `version` | Library version |
+
+The format combines elapsed time, machine identity, and a random sequence. System clock changes and random sequence repetition affect its behavior. A synchronized clock does not resolve number precision or uniqueness limitations.
+
+## Development
+
+```sh
+nvm install
+nvm use
+npm ci
+npm test
+npm audit
+npm audit --omit=dev
+```
+
+The project pins Node 26.13.1 and uses its built-in test runner, assertions, and V8 coverage without npm test dependencies. `npm test` prints coverage locally and enforces 100% line and function coverage and at least 93.75% branch coverage for `Sources/**/*.js`. V8 coverage differs from Jest's Istanbul coverage and does not provide a separate statement threshold or generate the previous JSON/LCOV reports in `__TestsCoverage/`. Audit results can change as advisories are published and do not cover the source limitations above.
+
+## License
+
+[Apache License 2.0](LICENSE.md). Copyright Silviu Schiau.
+
+## Publishing
+
+Releases publish through `.github/workflows/publish.yml` on GitHub-hosted runners using npm trusted publishing. Configure the package on npm with owner `sschiau`, repository `Particle.js`, workflow filename `publish.yml`, environment name `sschiau`, and permission to use `npm publish`. No npm token is required.
+
+Push a version tag matching `package.json` (for example `v3.0.3`), or manually run **Publish to npm** against `main`. The workflow installs the lockfile, runs tests and the dependency audit, then publishes. An existing published npm version cannot be overwritten.
