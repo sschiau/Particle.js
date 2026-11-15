@@ -1,6 +1,6 @@
 # JSON by default; optional binary
 
-The exact-Number draft retains Particle.generateParticle() and its Number output. New IDs fit in Number.MAX_SAFE_INTEGER, so JSON numbers round-trip exactly. Binary is an application transport option, not a way around the generator's eight-per-ms capacity.
+Particle 4.0.1 retains Particle.generateParticle() and its Number output. New IDs fit in Number.MAX_SAFE_INTEGER, so JSON numbers round-trip exactly. Binary is an application transport option, not a way around the generator's eight-per-ms capacity.
 
 ## Run locally on Node 26+
 
@@ -15,7 +15,7 @@ The original library method remains synchronous. The async helper is application
 
 ## Optional module
 
-For the local review checkout:
+For a repository checkout:
 
 ```js
 const { encodeNumberPayload, decodeNumberPayload } = require('./binary.js')
@@ -24,7 +24,7 @@ const bytes = encodeNumberPayload(ids)
 const receivedIds = decodeNumberPayload(bytes)
 ```
 
-The GitHub 4.0 draft includes the optional `binary.js` entry, so an approved future npm release with an unused version can use `require('Particle/binary.js')`. Published v3.0.3 does not provide this entry yet. The original main export's fields/methods are unchanged; binary helpers are a separate module.
+GitHub Packages provides this entry as `require('@sschiau/particle/binary.js')` in version 4.0.1. npmjs Particle@3.0.3 does not provide this entry. The original main export's fields/methods are unchanged; binary helpers are a separate module.
 
 The example uses a local Buffer copy to exercise separate receiver storage. It does not test a network or database. The helper transports ID batches, not arbitrary business-event records. Keep any other payload fields in their current schema until an appropriate complete-record encoding is tested.
 

@@ -11,7 +11,7 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 </div>
 
-> **GitHub review draft. Breaking ID-format change.** Particle 4.0 preserves the method names and Number output, with new packing and operating limits. Published npm v3.0.3 still uses the old rounded/random format. This implementation has not been published to npm.
+> **Breaking ID-format change.** Particle 4.0.1 preserves the method names and Number output, with new packing and operating limits. It is available from GitHub Packages as `@sschiau/particle@4.0.1`. The npmjs package `Particle@3.0.3` still uses the old rounded/random format.
 
 ![One elapsed millisecond, machine 1, and counter 0 combine into exact Number ID 8200 using 40 time bits, 10 machine bits, and 3 counter bits.](docs/number53-overview.svg)
 
@@ -19,10 +19,10 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 ## The API stays familiar.
 
-Use Node **26 or newer**. From this review checkout:
+Use Node **26 or newer**. Install the [GitHub Packages build](#two-registries-one-implementation), then:
 
 ```js
-require('./Sources/Particle.js')
+require('@sschiau/particle')
 const Particle = globalThis.Particle
 
 Particle.machineId = 1
@@ -34,7 +34,7 @@ const timestamp = Particle.timeFromParticle(id)
 console.log(JSON.stringify({ id, timestamp }))
 ```
 
-CommonJS also returns the same singleton: `const Particle = require('./Sources/Particle.js')`. Classic browser scripts still expose `Particle` globally. There is no new generator constructor to adopt.
+CommonJS also returns the same singleton: `const Particle = require('@sschiau/particle')`. From a repository checkout, use `require('./Sources/Particle.js')`. Classic browser scripts still expose `Particle` globally. There is no new generator constructor to adopt.
 
 Each successful call returns an integer from `0` to `Number.MAX_SAFE_INTEGER`. The clock is read with `Date.now()` on every call, and arithmetic rebuilds the time component from that reading. No large-integer type, binary-string assembly, or 32-bit bitwise packing is used.
 
@@ -42,7 +42,7 @@ Each successful call returns an integer from `0` to `Number.MAX_SAFE_INTEGER`. T
 
 ## Two registries. One implementation.
 
-The scoped GitHub Packages build is named `@sschiau/particle@4.0.1` and links to this repository through its package metadata. GitHub Packages requires authentication, including for public npm packages. After that build is published, install it with:
+The published [GitHub Packages build](https://github.com/sschiau/Particle.js/pkgs/npm/particle) is named `@sschiau/particle@4.0.1` and links to this repository through its package metadata. GitHub Packages requires authentication, including for public npm packages. After [authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages), install it with:
 
 ```sh
 npm install @sschiau/particle@4.0.1 --registry=https://npm.pkg.github.com
@@ -62,7 +62,7 @@ Use `require('@sschiau/particle')` for the original API and `require('@sschiau/p
 | Generated ID format | **Breaking:** 40/10/3 packing replaces the offset/random format |
 | Bursts and clock changes | **Breaking:** ninth issuance in a millisecond, rollback, and overflow produce explicit errors |
 | Input validation | **Breaking:** numeric strings, fractions, invalid epochs, and unsupported timestamps are rejected |
-| Runtime support | **Breaking:** Node 26+; Node 24 support is removed from this draft |
+| Runtime support | **Breaking:** Node 26+; Node 24 support is removed in 4.0.1 |
 | `String.prototype.lpad` side effect | **Removed:** callers using it must supply their own formatting |
 | Stored legacy IDs | Timestamp decoding is retained with the original epoch; lost integer bits remain unrecoverable |
 
@@ -87,18 +87,20 @@ The ninth call for the same machine and epoch in one millisecond throws `ERR_SEQ
 
 ## JSON first. Binary optional.
 
-New IDs round-trip exactly as JSON numbers:
+New IDs store exactly in signed 64-bit database integer columns (often named `BIGINT`), without JavaScript BigInt. If a database driver returns integer columns as strings, convert these IDs to Number and validate with `Number.isSafeInteger()`.
+
+They also round-trip exactly as JSON numbers:
 
 ```js
 const message = JSON.stringify({ id })
 const receivedId = JSON.parse(message).id
 ```
 
-The original API stays focused on IDs. An optional, separate `binary.js` adapter sends batches as explicitly ordered float64 bytes when both ends agree on the format. The draft package includes that entry; published v3.0.3 does not provide it.
+The original API stays focused on IDs. An optional, separate `binary.js` adapter sends batches as explicitly ordered float64 bytes when both ends agree on the format. The GitHub package includes that entry; npmjs v3.0.3 does not provide it.
 
 ```js
-// Local review checkout; the main Particle export stays unchanged.
-const { encodeNumberPayload, decodeNumberPayload } = require('./binary.js')
+// Optional adapter; the main Particle export stays unchanged.
+const { encodeNumberPayload, decodeNumberPayload } = require('@sschiau/particle/binary.js')
 const bytes = encodeNumberPayload([id])
 const receivedIds = decodeNumberPayload(bytes)
 ```
@@ -158,7 +160,7 @@ python3 -m http.server 8765 --bind 127.0.0.1
 # http://127.0.0.1:8765/Demo/mechanics.html
 ```
 
-[Public demo, deployed from main ↗](https://sschiau.github.io/Particle.js/Demo/mechanics.html). A review branch's local demo can differ from the public site until its changes are merged.
+[Try the live mechanics demo ↗](https://sschiau.github.io/Particle.js/Demo/mechanics.html). GitHub Pages deploys this demo from `main`.
 
 ---
 
@@ -167,6 +169,6 @@ python3 -m http.server 8765 --bind 127.0.0.1
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE.md)
 [![Socket score](https://socket.dev/api/badge/npm/package/Particle)](https://socket.dev/npm/package/Particle)
 
-The npm/Socket badges describe the published package. This GitHub draft is named **Particle 4.0.1**, with version fields set to `4.0.1`; its exact-Number implementation is unpublished. Version `4.0.1` is reserved for this exact-Number redesign; publishing to npmjs requires separate approval. No release tag or publishing run is part of this change.
+The npm/Socket badges describe `Particle` on npmjs, where latest remains **v3.0.3**. The exact-Number **4.0.1** implementation is published as [`@sschiau/particle` on GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). Publishing to npmjs requires separate approval; this merge does not publish there or create a release tag.
 
 [Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md). Copyright Silviu Schiau.

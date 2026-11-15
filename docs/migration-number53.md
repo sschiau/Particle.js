@@ -1,8 +1,8 @@
-# Migrating to the exact-Number draft
+# Migrating to Particle 4.0.1
 
-This is an unpublished, breaking ID-format change. The method names, mutable singleton, CommonJS/browser globals, machine range, epoch property, and Number return type are retained. That does not make old and new packed values interchangeable.
+This is a breaking ID-format change, published as @sschiau/particle@4.0.1 on GitHub Packages. The npmjs package remains Particle@3.0.3. The method names, mutable singleton, CommonJS/browser globals, machine range, epoch property, and Number return type are retained. That does not make old and new packed values interchangeable.
 
-| Old v3.0.3 format | New draft |
+| Old v3.0.3 format | New 4.0.1 format |
 | --- | --- |
 | Large rounded Number, random sequence | Exact safe integer Number, deterministic counter |
 | Time offset plus 10 machine and 12 random bits | 40 elapsed-time, 10 machine, 3 counter bits |
@@ -21,4 +21,4 @@ This is an unpublished, breaking ID-format change. The method names, mutable sin
 
 New generation supports at most 1099511627775 elapsed milliseconds from epoch, about 34.8 years. Plan a new namespace before exhaustion; do not reset an epoch or counter within an existing ID domain.
 
-The GitHub draft is named Particle 4.0 with version fields set to 4.0.1, as requested. This exact-Number implementation is not published. Version 4.0.1 identifies this exact-Number redesign. A future npmjs publication requires separate approval. Do not push a release tag or dispatch publishing for this draft. The new ID format and operational changes require a major-version rollout; the preserved method names do not make this a drop-in patch. Node 26+ is the new support policy; CI files remain unchanged at the owner's request.
+Particle 4.0.1 is available on [GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). A future npmjs publication requires separate approval; merging the README and demo does not publish to npmjs or create a release tag. The new ID format and operational changes require a major-version rollout; the preserved method names do not make this a drop-in patch. Node 26+ is the support policy. Existing CI files remain unchanged.
