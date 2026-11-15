@@ -53,10 +53,10 @@ Each successful call returns an integer from `0` to `Number.MAX_SAFE_INTEGER`. T
 
 npmjs provides `Particle@4.0.2` under both **`latest`** and **`next`**. Default installs select 4.0.2; pin `Particle@3.0.3` explicitly only when maintaining the legacy format. Read the migration guide before updating existing deployments.
 
-The alternative [GitHub Packages build](https://github.com/sschiau/Particle.js/pkgs/npm/particle) is named `@sschiau/particle@4.0.1` and links to this repository through its package metadata. GitHub Packages requires authentication, including for public npm packages. After [authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages), install it with:
+The alternative [GitHub Packages build](https://github.com/sschiau/Particle.js/pkgs/npm/particle) is named `@sschiau/particle@4.0.2` and links to this repository through its package metadata. GitHub Packages requires authentication, including for public npm packages. After [authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages), install it with:
 
 ```sh
-npm install @sschiau/particle@4.0.1 --registry=https://npm.pkg.github.com
+npm install @sschiau/particle@4.0.2 --registry=https://npm.pkg.github.com
 ```
 
 For that alternative registry, use `require('@sschiau/particle')` for the original API and `require('@sschiau/particle/binary.js')` for optional binary transport. The npmjs package uses `require('Particle')` and `require('Particle/binary.js')` respectively. The two registries have independent versions and distribution tags.
@@ -180,6 +180,6 @@ python3 -m http.server 8765 --bind 127.0.0.1
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE.md)
 [![Socket score](https://socket.dev/api/badge/npm/package/Particle)](https://socket.dev/npm/package/Particle)
 
-The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v4.0.2**. Socket may take time to index new versions. npmjs provides **4.0.2** under **latest** and **next**; the alternative [`@sschiau/particle` GitHub package](https://github.com/sschiau/Particle.js/pkgs/npm/particle) remains at **4.0.1**, with the same API and ID format. The existing CI and its publishing workflow remain unchanged.
+The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v4.0.2**. Socket may take time to index new versions. npmjs provides **4.0.2** under **latest** and **next**; the alternative [`@sschiau/particle` GitHub package](https://github.com/sschiau/Particle.js/pkgs/npm/particle) is also **4.0.2**, including the same license and attribution updates. The existing CI and its publishing workflow remain unchanged.
 
 [Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md) · [Attribution](NOTICE). Copyright 2014–2026 Silviu Schiau.
