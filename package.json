@@ -1,7 +1,7 @@
 {
   "name": "Particle",
-  "version": "3.0.3",
-  "description": "64bits int Time Based ID Generator",
+  "version": "4.0.1",
+  "description": "Exact Number time-based IDs: 1024 machines, 8 IDs/ms, original Particle API.",
   "repository": "git@github.com:sschiau/Particle.js.git",
   "homepage": "https://github.com/sschiau/Particle.js",
   "bugs": "https://github.com/sschiau/Particle.js/issues",
@@ -9,16 +9,22 @@
   "license": "Apache-2.0",
   "main": "./Sources/Particle.js",
   "scripts": {
-    "test": "node --test --experimental-test-coverage --test-coverage-include=\"Sources/**/*.js\" --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=93.75 Tests/tests.js Tests/demo-security.test.js"
+    "test": "node --test --experimental-test-coverage --test-coverage-include=\"Sources/**/*.js\" --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=93.75 Tests/tests.js Tests/demo-security.test.js",
+    "bench": "node Benchmarks/unique.cjs",
+    "bench:payload": "node Benchmarks/unique.cjs"
   },
   "dependencies": {},
   "engines": {
-    "node": ">=24.22.1 <25 || >=26.13.1 <27"
+    "node": ">=26.0.0"
   },
   "files": [
     "Sources/Particle.js",
+    "Sources/binary.js",
+    "binary.js",
     "README.md",
     "LICENSE.md",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "docs/migration-number53.md",
+    "docs/number53-overview.svg"
   ]
 }

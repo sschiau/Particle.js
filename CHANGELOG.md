@@ -1,5 +1,23 @@
 # Changelog
 
+## 4.0.1 — Unpublished development version
+
+### Breaking ID format
+
+- Preserve the original methods, mutable singleton, machine IDs 0–1023, and Number output; change generation to an exact 53-bit layout: 40 elapsed-time bits, 10 machine bits, and 3 deterministic counter bits.
+- Remove random sequence selection and the legacy time offset. Issue eight distinct IDs/ms per machine/epoch allocation; throw ERR_SEQUENCE_EXHAUSTED on the ninth call without waiting, wrapping, or inventing time.
+- Retain allocation state across configuration switches, strict input/clock validation, rollback protection, arithmetic packing, and fresh Date.now readings.
+- Decode new safe-integer IDs exactly and legacy rounded IDs through a separate numeric-range path. Lost legacy bits remain unrecoverable.
+
+### Compatibility and review
+
+- Preserve Node/browser globals and return the same singleton from CommonJS. Stop modifying String.prototype.
+- Support Node 26+, retaining the Node 26.13.1 development pin and existing CI files/test command.
+- Keep JSON as the default example; provide binary as an optional separate adapter with bounded framing/validation tests.
+- Update the light mechanics demo to show the actual 40/10/3 counter format without clock/random patching.
+- Replace obsolete duplicate-heavy speed claims with distinct-ID, live-clock, and same-corpus JSON/binary measurements. Add restart/namespace migration guidance.
+- Identify the development branch as 4.0.1, separate from published v3.0.3. No npm publication, release tag, or CI workflow change is included.
+
 ## 3.0.3 — 2026-11-15
 
 - Publish the updated README with the live GitHub Pages demo link.
