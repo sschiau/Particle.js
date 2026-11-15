@@ -11,7 +11,7 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 </div>
 
-> **Breaking ID-format change.** Particle 4.0.1 preserves the method names and Number output, with new packing and operating limits. It is available from GitHub Packages as `@sschiau/particle@4.0.1`. The npmjs package `Particle@3.0.3` still uses the old rounded/random format.
+> **Breaking ID-format change.** Particle 4.0.1 preserves the method names and Number output, with new packing and operating limits. Install `Particle@next` for 4.0.1. The default npmjs `latest` remains `Particle@3.0.3`, which uses the old rounded/random format.
 
 ![One elapsed millisecond, machine 1, and counter 0 combine into exact Number ID 8200 using 40 time bits, 10 machine bits, and 3 counter bits.](docs/number53-overview.svg)
 
@@ -19,10 +19,17 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 ## The API stays familiar.
 
-Use Node **26 or newer**. Install the [GitHub Packages build](#two-registries-one-implementation), then:
+Use Node **26 or newer**. Opt into the new major version explicitly:
+
+```sh
+npm install Particle@next
+# Or pin the exact version: npm install Particle@4.0.1
+```
+
+Then:
 
 ```js
-require('@sschiau/particle')
+require('Particle')
 const Particle = globalThis.Particle
 
 Particle.machineId = 1
@@ -34,7 +41,7 @@ const timestamp = Particle.timeFromParticle(id)
 console.log(JSON.stringify({ id, timestamp }))
 ```
 
-CommonJS also returns the same singleton: `const Particle = require('@sschiau/particle')`. From a repository checkout, use `require('./Sources/Particle.js')`. Classic browser scripts still expose `Particle` globally. There is no new generator constructor to adopt.
+CommonJS also returns the same singleton: `const Particle = require('Particle')`. From a repository checkout, use `require('./Sources/Particle.js')`. Classic browser scripts still expose `Particle` globally. There is no new generator constructor to adopt.
 
 Each successful call returns an integer from `0` to `Number.MAX_SAFE_INTEGER`. The clock is read with `Date.now()` on every call, and arithmetic rebuilds the time component from that reading. No large-integer type, binary-string assembly, or 32-bit bitwise packing is used.
 
@@ -42,13 +49,15 @@ Each successful call returns an integer from `0` to `Number.MAX_SAFE_INTEGER`. T
 
 ## Two registries. One implementation.
 
-The published [GitHub Packages build](https://github.com/sschiau/Particle.js/pkgs/npm/particle) is named `@sschiau/particle@4.0.1` and links to this repository through its package metadata. GitHub Packages requires authentication, including for public npm packages. After [authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages), install it with:
+npmjs provides `Particle@4.0.1` under the **`next`** tag; **`latest` remains 3.0.3** so existing default installs keep the legacy version. You can pin `Particle@4.0.1` or deliberately use `Particle@next`.
+
+The alternative [GitHub Packages build](https://github.com/sschiau/Particle.js/pkgs/npm/particle) is named `@sschiau/particle@4.0.1` and links to this repository through its package metadata. GitHub Packages requires authentication, including for public npm packages. After [authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages), install it with:
 
 ```sh
 npm install @sschiau/particle@4.0.1 --registry=https://npm.pkg.github.com
 ```
 
-Use `require('@sschiau/particle')` for the original API and `require('@sschiau/particle/binary.js')` for optional binary transport. Publishing this scoped build to GitHub Packages does not publish or update `Particle` on npmjs. The npmjs package remains at v3.0.3 until a separate release is approved.
+For that alternative registry, use `require('@sschiau/particle')` for the original API and `require('@sschiau/particle/binary.js')` for optional binary transport. The npmjs package uses `require('Particle')` and `require('Particle/binary.js')` respectively. The two registries have independent versions and distribution tags.
 
 ## Compatibility before you upgrade.
 
@@ -96,11 +105,11 @@ const message = JSON.stringify({ id })
 const receivedId = JSON.parse(message).id
 ```
 
-The original API stays focused on IDs. An optional, separate `binary.js` adapter sends batches as explicitly ordered float64 bytes when both ends agree on the format. The GitHub package includes that entry; npmjs v3.0.3 does not provide it.
+The original API stays focused on IDs. An optional, separate `binary.js` adapter sends batches as explicitly ordered float64 bytes when both ends agree on the format. Both 4.0.1 packages include that entry; npmjs v3.0.3 does not provide it.
 
 ```js
 // Optional adapter; the main Particle export stays unchanged.
-const { encodeNumberPayload, decodeNumberPayload } = require('@sschiau/particle/binary.js')
+const { encodeNumberPayload, decodeNumberPayload } = require('Particle/binary.js')
 const bytes = encodeNumberPayload([id])
 const receivedIds = decodeNumberPayload(bytes)
 ```
@@ -169,6 +178,6 @@ python3 -m http.server 8765 --bind 127.0.0.1
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE.md)
 [![Socket score](https://socket.dev/api/badge/npm/package/Particle)](https://socket.dev/npm/package/Particle)
 
-The npm/Socket badges describe `Particle` on npmjs, where latest remains **v3.0.3**. The exact-Number **4.0.1** implementation is published as [`@sschiau/particle` on GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). Publishing to npmjs requires separate approval; this merge does not publish there or create a release tag.
+The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v3.0.3**. The exact-Number **4.0.1** implementation is available under **next** on npmjs and as [`@sschiau/particle` on GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). The existing CI and its publishing workflow are unchanged; no release tag is created for this publication.
 
 [Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md). Copyright Silviu Schiau.

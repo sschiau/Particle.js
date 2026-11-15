@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.1 — 2026-11-15 (GitHub Packages)
+## 4.0.1 — 2026-11-15 (npmjs next and GitHub Packages)
 
 ### Breaking ID format
 
@@ -16,7 +16,8 @@
 - Keep JSON as the default example; provide binary as an optional separate adapter with bounded framing/validation tests.
 - Update the light mechanics demo to show the actual 40/10/3 counter format without clock/random patching.
 - Replace obsolete duplicate-heavy speed claims with distinct-ID, live-clock, and same-corpus JSON/binary measurements. Add restart/namespace migration guidance.
-- Publish the exact-Number implementation as @sschiau/particle@4.0.1 on GitHub Packages using the separate manual publisher. npmjs latest remains Particle@3.0.3; no npmjs publication or release tag is included. Existing CI remains unchanged.
+- Publish the exact-Number implementation as @sschiau/particle@4.0.1 on GitHub Packages using the separate manual publisher.
+- Publish Particle@4.0.1 to npmjs under next, keeping latest on Particle@3.0.3. Publish the tested archive directly without creating a release tag or changing existing CI.
 
 ## 3.0.3 — 2026-11-15
 
