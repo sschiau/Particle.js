@@ -180,4 +180,4 @@ python3 -m http.server 8765 --bind 127.0.0.1
 
 The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v4.0.1**. The exact-Number **4.0.1** implementation is available under **latest** and **next** on npmjs and as [`@sschiau/particle` on GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). The existing CI and its publishing workflow remain unchanged.
 
-[Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md). Copyright Silviu Schiau.
+[Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md) · [Attribution](NOTICE). Copyright Silviu Schiau.

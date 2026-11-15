@@ -23,6 +23,7 @@
     "binary.js",
     "README.md",
     "LICENSE.md",
+    "NOTICE",
     "CHANGELOG.md",
     "docs/migration-number53.md",
     "docs/number53-overview.svg"

@@ -3,6 +3,23 @@ const fs=require('node:fs')
 const vm=require('node:vm')
 const {test}=require('node:test')
 const {join}=require('node:path')
+test('all demo entrypoints restrict script execution to local external files',()=>{
+ const directory=join(__dirname,'../Demo')
+ for(const name of fs.readdirSync(directory).filter(name=>name.endsWith('.html'))){
+  const html=fs.readFileSync(join(directory,name),'utf8')
+  const policy=html.match(/<meta\s+http-equiv="Content-Security-Policy"\s+content="([^"]+)"/i)?.[1]
+  assert.ok(policy,`${name}: missing CSP`)
+  assert.match(policy,/(?:^|;)\s*default-src 'none'(?:;|$)/)
+  assert.doesNotMatch(policy,/unsafe-inline|unsafe-eval|https?:|\*/)
+  for(const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)){
+   const source=script[1].match(/\bsrc="([^"]+)"/i)?.[1]
+   assert.ok(source,`${name}: inline scripts are forbidden`)
+   const url=new URL(source,'https://demo.invalid/Demo/')
+   assert.equal(url.origin,'https://demo.invalid',`${name}: external script origin`)
+   assert.equal(script[2].trim(),'')
+  }
+ }
+})
 test('exact-Number demo renders safely without changing clocks or randomness',()=>{
  class Element{
   constructor(value=''){this.value=value;this.children=[];this.text=''}

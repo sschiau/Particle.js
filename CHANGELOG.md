@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Replace the legacy demo’s unpinned HTTP script and inline document.write rendering with a script-free redirect to the local mechanics demo.
+- Use the unmodified official Apache-2.0 license text and retain existing copyright attribution in NOTICE, included in future package archives. Remove conflicting boilerplate from the obsolete demo. These changes retain Apache-2.0 licensing.
+- Leave existing CI, runtime code, and the published 4.0.1 artifact unchanged. License/archive changes require a new npm version.
+
 ## 4.0.1 — 2026-11-15 (npmjs next and GitHub Packages)
 
 ### Breaking ID format
