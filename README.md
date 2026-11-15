@@ -1,6 +1,6 @@
 <div align="center">
 
-# Particle 4.0.1
+# Particle 4.0.2
 
 ### Every bit. Still a Number.
 
@@ -11,7 +11,9 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 </div>
 
-> **Breaking ID-format change.** Particle 4.0.1 preserves the method names and Number output, with new packing and operating limits. Default npm installs now select 4.0.1 through `latest`; `next` also points to 4.0.1. Legacy `Particle@3.0.3` uses the old rounded/random format and remains available by explicit version.
+> **4.0.2 patch in preparation.** The license/demo fixes and current-year attribution are prepared on this branch; npm still serves 4.0.1. The ID format and API are unchanged from 4.0.1.
+
+> **Breaking ID-format change from v3.** Particle 4.x preserves the method names and Number output, with new packing and operating limits. Default npm installs now select 4.0.1 through `latest`; `next` also points to 4.0.1. Legacy `Particle@3.0.3` uses the old rounded/random format and remains available by explicit version.
 
 ![One elapsed millisecond, machine 1, and counter 0 combine into exact Number ID 8200 using 40 time bits, 10 machine bits, and 3 counter bits.](docs/number53-overview.svg)
 
@@ -19,7 +21,7 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 ## The API stays familiar.
 
-Use Node **26 or newer**. Install the current release:
+Use Node **26 or newer**. Install the current published release (4.0.1):
 
 ```sh
 npm install Particle
@@ -180,4 +182,4 @@ python3 -m http.server 8765 --bind 127.0.0.1
 
 The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v4.0.1**. The exact-Number **4.0.1** implementation is available under **latest** and **next** on npmjs and as [`@sschiau/particle` on GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). The existing CI and its publishing workflow remain unchanged.
 
-[Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md) · [Attribution](NOTICE). Copyright Silviu Schiau.
+[Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md) · [Attribution](NOTICE). Copyright 2014–2026 Silviu Schiau.

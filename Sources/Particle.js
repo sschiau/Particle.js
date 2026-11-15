@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 Silviu Schiau.
+ * Copyright 2014-2026 Silviu Schiau.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -15,10 +15,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * @about Exact 53-bit Number IDs with the original Particle API (unreleased format)
+ * @about Exact 53-bit Number IDs with the original Particle API
  * @author Silviu Schiau <pr@silviu.co>
- * @version 4.0.1
- * @license Apache License Version 2.0 http://www.apache.org/licenses/LICENSE-2.0.txt
+ * @version 4.0.2
+ * @license Apache-2.0
  *
  * Thanks to Twitter for Snowflake.
  */
@@ -63,7 +63,7 @@
   }
 
   var Particle = {
-    version: '4.0.1', // GitHub review draft; not an npm publication.
+    version: '4.0.2',
     author: 'Silviu Schiau',
     machineId: void 0,
     epoch: void 0,

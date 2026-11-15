@@ -1,4 +1,4 @@
-/* Copyright 2014-2017 Silviu Schiau. SPDX-License-Identifier: Apache-2.0 */
+/* Copyright 2014-2026 Silviu Schiau. SPDX-License-Identifier: Apache-2.0 */
 // Optional Node 26+ binary transport. The Particle singleton API is unchanged.
 // Wire format: ASCII PNF1, uint32 LE count, count IEEE-754 float64 LE Numbers.
 const MAGIC=Buffer.from('PNF1').readUInt32LE(0)

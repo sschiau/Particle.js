@@ -1,6 +1,6 @@
 # JSON by default; optional binary
 
-Particle 4.0.1 retains Particle.generateParticle() and its Number output. New IDs fit in Number.MAX_SAFE_INTEGER, so JSON numbers round-trip exactly. Binary is an application transport option, not a way around the generator's eight-per-ms capacity.
+Particle 4.x retains Particle.generateParticle() and its Number output. New IDs fit in Number.MAX_SAFE_INTEGER, so JSON numbers round-trip exactly. Binary is an application transport option, not a way around the generator's eight-per-ms capacity.
 
 ## Run locally on Node 26+
 

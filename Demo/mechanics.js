@@ -1,4 +1,4 @@
-/* Copyright 2014-2017 Silviu Schiau. SPDX-License-Identifier: Apache-2.0 */
+/* Copyright 2014-2026 Silviu Schiau. SPDX-License-Identifier: Apache-2.0 */
 'use strict';
 const $=id=>document.getElementById(id);
 function generate(){

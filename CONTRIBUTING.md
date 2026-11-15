@@ -1,6 +1,6 @@
 # Contributing
 
-Preserve the original Particle API and Number output. Version 4.0.1 (npmjs latest/next and GitHub Packages) uses the exact 40/10/3 format; legacy v3.0.3 uses rounded/random IDs and remains available by explicit version. API compatibility does not imply wire-format compatibility. Read docs/migration-number53.md before changing storage or generation assumptions.
+Preserve the original Particle API and Number output. The 4.x line uses the exact 40/10/3 format. This branch prepares the 4.0.2 security/license patch; published npmjs latest/next and GitHub Packages are still 4.0.1; legacy v3.0.3 uses rounded/random IDs and remains available by explicit version. API compatibility does not imply wire-format compatibility. Read docs/migration-number53.md before changing storage or generation assumptions.
 
 Use Node 26 or newer; .nvmrc pins development to Node 26.13.1. Run npm test and npm audit. Existing CI files and the npm test command remain unchanged. The published runtime has no dependencies.
 

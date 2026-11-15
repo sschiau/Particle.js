@@ -1,6 +1,6 @@
 # Particle 4.0.1 security and license review
 
-Reviewed November 15, 2026 against repository commit `d749c39b217cae7dd498f54512adb98ced70703f` and the actual npmjs `Particle@4.0.1` archive. CI and runtime source are unchanged by these fixes.
+Reviewed November 15, 2026 against repository commit `d749c39b217cae7dd498f54512adb98ced70703f` and the actual npmjs `Particle@4.0.1` archive. CI and the runtime algorithms are unchanged by these fixes. The follow-up prepares version 4.0.2 and updates current copyright notices to 2014–2026.
 
 ## Result
 
@@ -29,7 +29,7 @@ The [3.0.2 report](https://socket.dev/npm/package/Particle/overview/3.0.2) and [
 - Evidence: a script loads `http://momentjs.com/downloads/moment-with-locales.min.js` without a pinned version or integrity, followed by an inline script. There is no CSP in that entry point.
 - Impact: someone able to alter that HTTP response could execute JavaScript in the demo origin. HTTPS hosting normally blocks this mixed-content load, leaving the old demo broken instead. No attacker-controlled input into document.write was demonstrated; it is not reported as a proven DOM-XSS exploit.
 - Fix: [Demo/index.html:7](../Demo/index.html) uses a restrictive CSP, a constant same-origin redirect, and an accessible fallback link to mechanics.html. It loads no scripts or external resources. The old header is retained as Apache SPDX attribution without the conflicting boilerplate.
-- Validation: browser navigation from the old URL reaches the working 4.0.1 mechanics page. The regression at [Tests/demo-security.test.js:6](../Tests/demo-security.test.js) checks all demo HTML entry points for CSP and rejects inline/external executable scripts.
+- Validation: browser navigation from the old URL reaches the working mechanics page. The regression at [Tests/demo-security.test.js:6](../Tests/demo-security.test.js) checks all demo HTML entry points for CSP and rejects inline/external executable scripts.
 
 ## SR-002 — Conflicting legacy license boilerplate
 
@@ -48,11 +48,11 @@ For predictable machine recognition, [LICENSE.md](../LICENSE.md) now matches the
 ## Validation and publication boundary
 
 - Actual npm archive SHA-512: `sha512-2G25R+j4eyol7y9PvqtW2g6E0ApJhvbXSCnLW1QmSd9IdlqS3Wy5124nTbSkpSvZ7PHc9RhTPblkic+ZVu5sEQ==`.
-- Actual npm archive contains nine expected files; demos, tests, benchmark fixtures, and workflows are excluded. The inspected runtime matches the repository byte for byte.
+- Actual npm archive contains nine expected files; demos, tests, benchmark fixtures, and workflows are excluded. Before the 4.0.2 version/copyright update, the inspected runtime matched the repository byte for byte. The patch changes only runtime version/header metadata, not ID-generation or codec algorithms.
 - Actual-package checks verify original API/global export, eight distinct safe integer IDs, ninth-call rejection, exact JSON and binary round trips, malformed-frame rejection, and no String.prototype patch, with string code generation disabled.
 - Node 26.13.1: 17 tests pass; runtime line/branch/function coverage remains 100%. The new test is in an already executed test file; the npm test command is unchanged.
 - npm audit: zero vulnerabilities. A packed consumer passes; future-package inspection verifies canonical LICENSE.md and NOTICE are actually included.
-- No changes to .github workflows, .travis.yml, .nvmrc, or runtime modules. No new dependencies.
-- npm 4.0.1 and its tags are not changed by this review. The canonical license/NOTICE changes need a separately approved new package version. The legacy demo fix reaches the public site when this branch is merged through the existing Pages deployment.
+- No changes to .github workflows, .travis.yml, or .nvmrc. Runtime modules change only version/header metadata. No new dependencies.
+- npm 4.0.1 and its tags are not changed by this review. The fixes are prepared as 4.0.2, as requested; this branch has not published it. The legacy demo fix reaches the public site when this branch is merged through the existing Pages deployment.
 
 Known operational requirements remain documented: IDs are predictable identifiers, not credentials; unique machine allocations, shared epoch namespaces, restart watermarks, and application backpressure are required. The review does not replace those safeguards or claim that a dependency audit detects application-level issues.
