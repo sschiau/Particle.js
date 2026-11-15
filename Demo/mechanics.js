@@ -5,7 +5,7 @@ const $ = id => document.getElementById(id)
 const generators = new Map()
 let heldTimestamp = null
 let currentTime = Date.now()
-$('release').textContent = `V4 CANDIDATE · ${version}`
+$('release').textContent = `V4 · ${version}`
 $('epoch').value = String(DEFAULT_EPOCH)
 
 function generate() {

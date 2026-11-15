@@ -1,5 +1,7 @@
 # Benchmarks and correctness evidence
 
+The recorded measurements use 4.0.0-rc.1. The 4.0.0 release uses the same core implementation with its version constant updated; raw results retain their original version labels.
+
 The goal is a more dependable ID generator. A blanket “10× faster” claim would not describe the evidence below.
 
 ## Reproduce

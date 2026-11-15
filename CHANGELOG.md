@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.0.0-rc.1 — Unreleased candidate
+## 4.0.0 — 2026-11-15
 
 ### Breaking changes
 
@@ -12,9 +12,9 @@
 ### Documentation and validation
 
 - Add explicit uniqueness/restart contracts, migration and comparison guides, packed consumer/type tests, and deterministic burst evidence.
-- Refresh the README, five purposeful badges, candidate demo, issue templates, contribution/security policies, and draft launch article.
+- Refresh the README, a mechanics diagram, v4 demo, issue templates, contribution/security policies, and draft launch article.
 - Keep the existing GitHub workflows unchanged; broader CI and prerelease publishing changes are deferred to a separate proposal.
-- This candidate has not been published. The stable package remains v3.0.3.
+- Publish stable v4.0.0 under npm’s `next` tag; preserve `latest` at v3.0.3. Set `publishConfig.tag` to `next` without changing the existing CI workflows.
 
 ## 3.0.3 — 2026-11-15
 

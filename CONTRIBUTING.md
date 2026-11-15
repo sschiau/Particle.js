@@ -28,6 +28,6 @@ Read [the migration guide](docs/migration-v4.md) before changing the wire format
 
 ## Releases
 
-A maintainer reviews validation before tagging. Tag names must match package.json exactly. The existing publishing workflow runs runtime tests and npm audit, then publishes with the default npm tag (`latest`). It does not run the declaration or packed-consumer checks or route prereleases to `next`. Do not push a v4 candidate tag or dispatch publishing until a separate prerelease publishing plan is approved. Ordinary branch pushes do not publish npm packages. Do not retag or overwrite a published version.
+A maintainer reviews validation before tagging. Tag names must match package.json exactly. The existing publishing workflow runs runtime tests and npm audit, then runs npm publish. The package sets `publishConfig.tag` to `next`, so v4 publishes there while `latest` stays on v3.0.3. Keep that setting unless a separate promotion is approved. The workflow does not run the declaration or packed-consumer checks; run the full checks locally before publishing. Ordinary branch pushes do not publish npm packages. Do not retag or overwrite a published version.
 
 Keep package metadata, source version, changelog, examples, and both lockfile version entries aligned. GitHub Pages publishes main, so merging demo changes also changes the public site. See [the release checklist](docs/release-checklist.md).

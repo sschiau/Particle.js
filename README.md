@@ -19,7 +19,7 @@ One exact integer for the events your system creates.
 
 <br>
 
-> **Meet the v4 candidate.** This checkout and the live demo use unpublished `4.0.0-rc.1`. npm’s stable release is **3.0.3**, with a different API, ID format, and known precision and random-sequence limitations. [Migrating from v3 →](docs/migration-v4.md)
+> **Meet v4.0.0.** Install this stable major version with `npm install Particle@next`. The default npm tag, `latest`, remains on **3.0.3**, with a different API, ID format, and known precision and random-sequence limitations. [Migrating from v3 →](docs/migration-v4.md)
 
 ## An ID in a few lines.
 
@@ -37,14 +37,12 @@ console.log(decode(id).timestamp)
 
 CommonJS works too: `const { createGenerator, decode } = require('Particle')`. Both entry points share one implementation, with TypeScript declarations included.
 
-**Try it from source.** Use Node **24.22.1+ in 24.x** or **26.13.1+ in 26.x**. Build this unpublished candidate from a checkout, then install the tarball in your application:
+**Install v4.** Use Node **24.22.1+ in 24.x** or **26.13.1+ in 26.x**. Pin the release in your application:
 
 ```sh
-npm ci --ignore-scripts
-npm run check
-npm pack
-# In your application:
-npm install --save-exact /path/to/Particle-4.0.0-rc.1.tgz
+npm install --save-exact Particle@4.0.0
+# Or follow the explicitly selected v4 channel:
+npm install Particle@next
 ```
 
 ## Three pieces. One exact value.
@@ -105,15 +103,15 @@ python3 -m http.server 8765 --bind 127.0.0.1
 # Open http://127.0.0.1:8765/Demo/mechanics.html
 ```
 
-A light, static diagram shows the actual candidate at work. Hold the clock to watch the counter change one click at a time. The demo uses local ES modules under a restrictive CSP. Browser integrations need native ES modules and BigInt; import `Sources/Particle.mjs` from a module script. GitHub Pages deploys `main` independently of npm.
+A light, static diagram shows v4 at work. Hold the clock to watch the counter change one click at a time. The demo uses local ES modules under a restrictive CSP. Browser integrations need native ES modules and BigInt; import `Sources/Particle.mjs` from a module script. GitHub Pages deploys `main` independently of npm.
 
 ---
 
-[![npm stable](https://img.shields.io/npm/v/Particle?label=npm%20stable&style=flat)](https://www.npmjs.com/package/Particle)
+[![npm latest](https://img.shields.io/npm/v/Particle?label=npm%20latest&style=flat)](https://www.npmjs.com/package/Particle)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue?style=flat)](LICENSE.md)
 [![Socket score](https://socket.dev/api/badge/npm/package/Particle)](https://socket.dev/npm/package/Particle)
 
-Badges refer to the published npm package. The v4 candidate remains unpublished.
+The version badge follows npm’s default `latest` tag (v3.0.3). v4.0.0 is available through `next`; the tag name does not make it a prerelease.
 
 [Contribute](CONTRIBUTING.md) · [Security](SECURITY.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Changelog](CHANGELOG.md) · [Release checklist](docs/release-checklist.md)
 

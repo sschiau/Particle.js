@@ -4,7 +4,7 @@ Choose according to your operating model, not a package's badge count. Particle 
 
 | Approach | Exact representation | Coordination | Ordering | Main tradeoff |
 | --- | --- | --- | --- | --- |
-| Particle v4 candidate | 63-bit bigint / decimal string | Distinct machine IDs, common epoch, safe restart policy | Strict within one live generator | 4096 IDs/ms per generator; explicit clock/capacity errors |
+| Particle v4 | 63-bit bigint / decimal string | Distinct machine IDs, common epoch, safe restart policy | Strict within one live generator | 4096 IDs/ms per generator; explicit clock/capacity errors |
 | Particle v3.0.3 | JavaScript Number | Machine/epoch configuration | Time influenced; precision and random repeats remain | Cannot guarantee distinct outputs |
 | UUID v4, e.g. Node crypto.randomUUID() | 128-bit UUID string | No machine-ID allocator | Random, no chronological ordering | Probabilistic collision model; larger values |
 | UUID v7 implementation | 128-bit UUID string with time field | Depends on implementation's generation policy | Time ordered by format; details vary | Audit its monotonicity, random-bit, and clock policies |
