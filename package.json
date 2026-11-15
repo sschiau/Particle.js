@@ -1,6 +1,6 @@
 {
   "name": "Particle",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Exact Number time-based IDs: 1024 machines, 8 IDs/ms, original Particle API.",
   "repository": "git@github.com:sschiau/Particle.js.git",
   "homepage": "https://github.com/sschiau/Particle.js",
@@ -23,6 +23,7 @@
     "binary.js",
     "README.md",
     "LICENSE.md",
+    "NOTICE",
     "CHANGELOG.md",
     "docs/migration-number53.md",
     "docs/number53-overview.svg"

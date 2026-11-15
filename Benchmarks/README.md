@@ -4,7 +4,7 @@ Use Node 26+ and run `npm run bench` (or `npm run bench:payload`). The selected 
 
 ## Live 100,000-ID issuance
 
-One observed real-clock run on Node v26.13.1 / Apple M1 Max:
+One observed real-clock run of the 4.0.1 implementation on Node v26.13.1 / Apple M1 Max:
 
 | Measurement | Result |
 | --- | ---: |
@@ -30,9 +30,11 @@ Both codecs process the identical 100,000 exact live-issued IDs. Nine warmed sam
 
 Binary payload processing was 2.65× faster and 52.9% smaller in this run. It does not increase generation capacity or remove issuance waiting. Component medians need not add up to the median total. JSON is the default example and preserves every new ID exactly. The optional binary codec carries the same Number values with explicit byte order and bounded framing.
 
+The raw source hashes identify the measured 4.0.1 files, before the 4.0.2 version/copyright metadata update. The generator and codec algorithms are unchanged; these are historical measurements, not a new 4.0.2 timing run.
+
 [Raw timings, distinct counts, retries, source hashes, and method](results-node26.json) · [Payload protocol](../Examples/PAYLOADS.md) · [Batch helper](../Examples/generate-batch.cjs).
 
-This exact-Number implementation is published as Particle@4.0.1 under npmjs latest and next and as @sschiau/particle@4.0.1 on GitHub Packages. npmjs latest and next both point to Particle@4.0.1. Existing CI files/test command are unchanged.
+npmjs latest and next both provide Particle@4.0.2, with the same generator and codec algorithms as the measured 4.0.1 implementation. The alternative GitHub Packages build remains @sschiau/particle@4.0.1. Existing CI files/test command are unchanged.
 
 ## Deterministic correctness tests
 

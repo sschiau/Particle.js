@@ -22,7 +22,7 @@ test('original API, global export, CommonJS return value, and Number output rema
   const exported=require('../Sources/Particle.js')
   assert.equal(exported,globalThis.Particle)
   assert.deepEqual(Object.keys(exported),['version','author','machineId','epoch','generateParticle','timeFromParticle'])
-  assert.equal(exported.version,'4.0.1')
+  assert.equal(exported.version,'4.0.2')
   const {api}=configured();assert.equal(typeof api.generateParticle(),'number')
 })
 
@@ -30,10 +30,10 @@ test('classic browser and CommonJS paths work without eval or prototype modifica
   const {sandbox,api}=configured(EPOCH+1,{module:{exports:{}}})
   assert.equal(sandbox.module.exports,api)
   assert.equal(runInNewContext('String.prototype.lpad',sandbox),undefined)
-  for(const extra of [{module:null},{module:1},{module:{exports:null}},{self:null},{self:1},{self:{Object:null}}])assert.equal(configured(EPOCH+1,extra).api.version,'4.0.1')
+  for(const extra of [{module:null},{module:1},{module:{exports:null}},{self:null},{self:1},{self:{Object:null}}])assert.equal(configured(EPOCH+1,extra).api.version,'4.0.2')
   const {sandbox:realm}=load();runInNewContext('self={Object};',realm)
   runInNewContext(source,realm,{filename:sourcePath,contextCodeGeneration:{strings:false,wasm:false}})
-  assert.equal(realm.self.Particle.version,'4.0.1')
+  assert.equal(realm.self.Particle.version,'4.0.2')
 })
 
 test('machine and epoch inputs are validated strictly, without coercion',()=>{
