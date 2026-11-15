@@ -69,7 +69,7 @@ npm audit
 npm audit --omit=dev
 ```
 
-The project pins Node 24.22.1 and Jest 30.5.2. Tests run locally without uploading coverage. Coverage reports are generated in `__TestsCoverage/`; existing thresholds remain enforced. At v3.0.0 preparation, 10 tests passed with 100% coverage and both npm audits reported zero affected packages. Audit results can change as advisories are published and do not cover the source limitations above.
+The project pins Node 24.22.1 and uses its built-in test runner, assertions, and V8 coverage without npm test dependencies. `npm test` prints coverage locally and enforces 100% line and function coverage and at least 93.75% branch coverage for `Sources/**/*.js`. V8 coverage differs from Jest's Istanbul coverage and does not provide a separate statement threshold or generate the previous JSON/LCOV reports in `__TestsCoverage/`. Audit results can change as advisories are published and do not cover the source limitations above.
 
 ## License
 

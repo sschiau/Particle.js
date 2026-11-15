@@ -1,45 +1,52 @@
-require('../Sources/Particle.js')
+const assert = require('node:assert/strict')
+const { readFileSync } = require('node:fs')
+const { describe, test } = require('node:test')
+const { runInThisContext } = require('node:vm')
+
+const sourcePath = require.resolve('../Sources/Particle.js')
+require(sourcePath)
+const Particle = globalThis.Particle
 
 describe('Errors', () => {
   test('Throw error if MachineId is not set', () => {
-    expect(() => {
+    assert.throws(() => {
       Particle.generateParticle()
-    }).toThrow('Machine ID should be digits only and not undefined')
+    }, { message: 'Machine ID should be digits only and not undefined' })
   })
 
   test('Throw error if MachineId is not an integer', () => {
-    expect(() => {
+    assert.throws(() => {
       Particle.machineId = 'not an integer'
       Particle.generateParticle()
-    }).toThrow('Machine ID should be digits only and not undefined')
+    }, { message: 'Machine ID should be digits only and not undefined' })
   })
 
   test('Throw error if MachineId is not inside the valid range [0-1023]', () => {
-    expect(() => {
+    assert.throws(() => {
       Particle.machineId = 2000
       Particle.generateParticle()
-    }).toThrow('Enter a valid machine id range [0-1023]')
+    }, { message: 'Enter a valid machine id range [0-1023]' })
   })
 
   test('Throw error if Epoch is not undefined', () => {
-    expect(() => {
+    assert.throws(() => {
       Particle.machineId = 1
       Particle.generateParticle()
-    }).toThrow('Epoch should be digits only and not undefined')
+    }, { message: 'Epoch should be digits only and not undefined' })
   })
 
   test('Throw error if Epoch is not an integer', () => {
-    expect(() => {
+    assert.throws(() => {
       Particle.epoch = 'not an integer'
       Particle.generateParticle()
-    }).toThrow('Epoch should be digits only and not undefined')
+    }, { message: 'Epoch should be digits only and not undefined' })
   })
 
   test('Throw error if Epoch is not 13 digits long', () => {
-    expect(() => {
+    assert.throws(() => {
       Particle.epoch = 148065749200
       Particle.generateParticle()
-    }).toThrow('UNIX time should be in miliseconds (min 13 digits)')
+    }, { message: 'UNIX time should be in miliseconds (min 13 digits)' })
   })
 })
 
@@ -47,21 +54,24 @@ describe('Tests', () => {
   test('Check Epoch & MachineId inside Particle', () => {
     Particle.machineId = 1
     Particle.epoch = 1480657492000
-    expect(Particle.machineId).toBe(1)
-    expect(Particle.epoch).toBe(1480657492000)
+    assert.equal(Particle.machineId, 1)
+    assert.equal(Particle.epoch, 1480657492000)
   })
 
   test('Generate Particle', () => {
     Particle.machineId = 1
     Particle.epoch = 1480657492000
     var particle = Particle.generateParticle()
-    expect(particle).toBeGreaterThan(4611686018427387903)
-    expect(particle).toBeLessThanOrEqual(9223372036854775807)
+    assert.equal(typeof particle, 'number')
+    assert.ok(particle > 4611686018427387903)
+    assert.ok(particle <= 9223372036854775807)
   })
 
   test('Retrieve Time From Particle', () => {
     var particle = Particle.generateParticle()
-    expect(Particle.timeFromParticle(particle)).toBeGreaterThan(1480657492000)
+    var timestamp = Particle.timeFromParticle(particle)
+    assert.equal(typeof timestamp, 'number')
+    assert.ok(timestamp > 1480657492000)
   })
 })
 
@@ -70,11 +80,13 @@ describe('Browser global export', () => {
     const browser = { Object }
     global.self = browser
     try {
-      jest.isolateModules(() => { require('../Sources/Particle.js') })
-      expect(browser.Particle.version).toBe('3.0.0')
+      runInThisContext(readFileSync(sourcePath, 'utf8'), { filename: sourcePath })
+      assert.equal(browser.Particle.version, '3.0.0')
       browser.Particle.machineId = 1
       browser.Particle.epoch = 1480657492000
-      expect(browser.Particle.generateParticle()).toBeGreaterThan(0)
+      const particle = browser.Particle.generateParticle()
+      assert.equal(typeof particle, 'number')
+      assert.ok(particle > 0)
     } finally {
       delete global.self
     }
