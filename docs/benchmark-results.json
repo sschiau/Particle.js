@@ -1,0 +1,79 @@
+{
+  "candidate": "4.0.0-rc.1",
+  "node": "v26.13.1",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "cpu": "Apple M1 Max",
+  "burst": {
+    "fixedTimestamp": 1794744000000,
+    "sharedEpoch": 1767225600000,
+    "samples": 4096,
+    "legacyVersion": "3.0.3",
+    "legacyDistinctNumberIds": 5,
+    "legacyUnsafeNumberIds": 4096,
+    "candidateDistinctStringIds": 4096,
+    "distinctOutputRatio": 819.2,
+    "method": "Fixed machine and millisecond. Legacy receives idealized sequential random draws, not real randomness. This measures distinct outputs, not speed or end-to-end production capacity."
+  },
+  "throughput": {
+    "iterationsPerRun": 100000,
+    "repeats": 5,
+    "bigintMedianIdsPerSecond": 17673699.326190196,
+    "stringMedianIdsPerSecond": 11626667.249550257,
+    "bigintRuns": [
+      {
+        "milliseconds": 5.985666999999999,
+        "idsPerSecond": 16706575.892043445,
+        "last": "115420535600452255"
+      },
+      {
+        "milliseconds": 6.142375000000001,
+        "idsPerSecond": 16280347.585420944,
+        "last": "115420535600452255"
+      },
+      {
+        "milliseconds": 5.658125000000005,
+        "idsPerSecond": 17673699.326190196,
+        "last": "115420535600452255"
+      },
+      {
+        "milliseconds": 5.5787910000000025,
+        "idsPerSecond": 17925030.710058853,
+        "last": "115420535600452255"
+      },
+      {
+        "milliseconds": 5.6297910000000115,
+        "idsPerSecond": 17762648.7377595,
+        "last": "115420535600452255"
+      }
+    ],
+    "stringRuns": [
+      {
+        "milliseconds": 9.03716700000001,
+        "idsPerSecond": 11065414.63713129,
+        "last": "115420535600452255"
+      },
+      {
+        "milliseconds": 8.269707999999994,
+        "idsPerSecond": 12092325.388030639,
+        "last": "115420535600452255"
+      },
+      {
+        "milliseconds": 8.600916999999995,
+        "idsPerSecond": 11626667.249550257,
+        "last": "115420535600452255"
+      },
+      {
+        "milliseconds": 8.77525,
+        "idsPerSecond": 11395686.732571721,
+        "last": "115420535600452255"
+      },
+      {
+        "milliseconds": 8.230874999999997,
+        "idsPerSecond": 12149376.58511398,
+        "last": "115420535600452255"
+      }
+    ],
+    "method": "Candidate only; injected clock advances after every 1024 calls. Warmed local microbenchmark. No storage, network, production wall-clock pacing, or legacy throughput comparison."
+  }
+}

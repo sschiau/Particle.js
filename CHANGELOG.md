@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.0.0-rc.1 — Unreleased candidate
+
+### Breaking changes
+
+- Replace the Number-based global singleton and random sequence with independent generators returning exact bigint or decimal-string IDs.
+- Use a 41-bit elapsed timestamp, 10-bit allocated machine ID, and 12-bit counter; the default epoch is 2026-01-01 UTC. This is a new wire format.
+- Provide named CommonJS and ESM exports and TypeScript declarations; stop modifying globalThis and String.prototype.
+- Reject malformed/coerced input and report clock rollback, sequence exhaustion, and timestamp overflow without spinning or consuming state.
+
+### Documentation and validation
+
+- Add explicit uniqueness/restart contracts, migration and comparison guides, packed consumer/type tests, and deterministic burst evidence.
+- Refresh the README, five purposeful badges, candidate demo, issue templates, contribution/security policies, and draft launch article.
+- Keep the existing GitHub workflows unchanged; broader CI and prerelease publishing changes are deferred to a separate proposal.
+- This candidate has not been published. The stable package remains v3.0.3.
+
 ## 3.0.3 — 2026-11-15
 
 - Publish the updated README with the live GitHub Pages demo link.
