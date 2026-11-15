@@ -1,5 +1,7 @@
 # Particle.js
 
+[![Socket score](https://socket.dev/api/badge/npm/package/Particle)](https://socket.dev/npm/package/Particle)
+
 A small JavaScript library for generating time-based numeric identifiers and extracting their timestamps. Works in Node.js and browsers, with no runtime dependencies.
 
 > **Known limitation:** identifiers are represented as JavaScript `Number`, which cannot preserve all 64-bit integer values. Distinct identifiers can collide. Random sequence selection can also repeat. Avoid this version where guaranteed uniqueness is required, and never use its identifiers as authentication tokens.
@@ -7,10 +9,10 @@ A small JavaScript library for generating time-based numeric identifiers and ext
 ## Install
 
 ```sh
-npm install Particle@3.0.1
+npm install Particle@3.0.2
 ```
 
-Version 3 requires Node.js **24.22.1 or newer within Node 24.x**. See [release notes](CHANGELOG.md) for compatibility changes.
+Supported Node.js versions are **24.22.1 or newer within Node 24.x**, or **26.13.1 or newer within Node 26.x**. Development and publishing use Node 26.13.1. See [release notes](CHANGELOG.md) for compatibility changes.
 
 ## Use in Node.js
 
@@ -69,7 +71,7 @@ npm audit
 npm audit --omit=dev
 ```
 
-The project pins Node 24.22.1 and uses its built-in test runner, assertions, and V8 coverage without npm test dependencies. `npm test` prints coverage locally and enforces 100% line and function coverage and at least 93.75% branch coverage for `Sources/**/*.js`. V8 coverage differs from Jest's Istanbul coverage and does not provide a separate statement threshold or generate the previous JSON/LCOV reports in `__TestsCoverage/`. Audit results can change as advisories are published and do not cover the source limitations above.
+The project pins Node 26.13.1 and uses its built-in test runner, assertions, and V8 coverage without npm test dependencies. `npm test` prints coverage locally and enforces 100% line and function coverage and at least 93.75% branch coverage for `Sources/**/*.js`. V8 coverage differs from Jest's Istanbul coverage and does not provide a separate statement threshold or generate the previous JSON/LCOV reports in `__TestsCoverage/`. Audit results can change as advisories are published and do not cover the source limitations above.
 
 ## License
 
@@ -79,4 +81,4 @@ The project pins Node 24.22.1 and uses its built-in test runner, assertions, and
 
 Releases publish through `.github/workflows/publish.yml` on GitHub-hosted runners using npm trusted publishing. Configure the package on npm with owner `sschiau`, repository `Particle.js`, workflow filename `publish.yml`, environment name `sschiau`, and permission to use `npm publish`. No npm token is required.
 
-Push a version tag matching `package.json` (for example `v3.0.1`), or manually run **Publish to npm** against `main`. The workflow installs the lockfile, runs tests and the dependency audit, then publishes. An existing published npm version cannot be overwritten.
+Push a version tag matching `package.json` (for example `v3.0.2`), or manually run **Publish to npm** against `main`. The workflow installs the lockfile, runs tests and the dependency audit, then publishes. An existing published npm version cannot be overwritten.

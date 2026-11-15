@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict')
 const { readFileSync } = require('node:fs')
 const { describe, test } = require('node:test')
-const { runInThisContext } = require('node:vm')
+const { runInThisContext, runInNewContext } = require('node:vm')
 
 const sourcePath = require.resolve('../Sources/Particle.js')
 require(sourcePath)
@@ -76,12 +76,24 @@ describe('Tests', () => {
 })
 
 describe('Browser global export', () => {
+  test('exports and generates IDs with string code generation disabled', () => {
+    const sandbox = {}
+    runInNewContext(readFileSync(sourcePath, 'utf8'), sandbox, {
+      filename: sourcePath,
+      contextCodeGeneration: { strings: false, wasm: false }
+    })
+    assert.equal(sandbox.Particle.version, '3.0.2')
+    sandbox.Particle.machineId = 1
+    sandbox.Particle.epoch = 1480657492000
+    assert.equal(typeof sandbox.Particle.generateParticle(), 'number')
+  })
+
   test('exports to browser self when it shares the current Object constructor', () => {
     const browser = { Object }
     global.self = browser
     try {
       runInThisContext(readFileSync(sourcePath, 'utf8'), { filename: sourcePath })
-      assert.equal(browser.Particle.version, '3.0.1')
+      assert.equal(browser.Particle.version, '3.0.2')
       browser.Particle.machineId = 1
       browser.Particle.epoch = 1480657492000
       const particle = browser.Particle.generateParticle()

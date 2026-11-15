@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.2 — 2026-11-15
+
+- Pin development and publishing to Node 26.13.1 and support Node 26 alongside the existing Node 24 range.
+- Add a live Socket score badge to the README.
+- Replace the dynamic Function-based global lookup with globalThis, preserving the browser self export.
+- Declare Apache-2.0 in package and lockfile metadata and use the standard Apache notice in the source header. The existing Apache license file and copyright attribution are retained.
+- Add a regression test that loads the library with string code generation disabled.
+
 ## 3.0.1 — 2026-11-15
 
 ### Changes
