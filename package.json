@@ -9,7 +9,7 @@
   "license": "Apache-2.0",
   "main": "./Sources/Particle.js",
   "scripts": {
-    "test": "node --test --experimental-test-coverage --test-coverage-include=\"Sources/**/*.js\" --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=93.75 Tests/tests.js"
+    "test": "node --test --experimental-test-coverage --test-coverage-include=\"Sources/**/*.js\" --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=93.75 Tests/tests.js Tests/demo-security.test.js"
   },
   "dependencies": {},
   "engines": {

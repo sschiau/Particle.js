@@ -46,6 +46,8 @@ Serve `Sources/Particle.js` with your application and load it before your own sc
 </script>
 ```
 
+Explore the interactive [mechanics demo](Demo/mechanics.html) for a system diagram, real ID samples, and deployment examples. From the repository root, run `python3 -m http.server 8765 --bind 127.0.0.1` and open [the local demo](http://127.0.0.1:8765/Demo/mechanics.html). The demo uses local scripts and styles under a restrictive Content Security Policy.
+
 The optional `Demo/index.html` uses an old external HTTP Moment.js URL that may fail. The library itself does not need Moment.js.
 
 ## API
