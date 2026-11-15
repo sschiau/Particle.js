@@ -11,7 +11,7 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 </div>
 
-> **Breaking ID-format change.** Particle 4.0.1 preserves the method names and Number output, with new packing and operating limits. Install `Particle@next` for 4.0.1. The default npmjs `latest` remains `Particle@3.0.3`, which uses the old rounded/random format.
+> **Breaking ID-format change.** Particle 4.0.1 preserves the method names and Number output, with new packing and operating limits. Default npm installs now select 4.0.1 through `latest`; `next` also points to 4.0.1. Legacy `Particle@3.0.3` uses the old rounded/random format and remains available by explicit version.
 
 ![One elapsed millisecond, machine 1, and counter 0 combine into exact Number ID 8200 using 40 time bits, 10 machine bits, and 3 counter bits.](docs/number53-overview.svg)
 
@@ -19,10 +19,10 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 ## The API stays familiar.
 
-Use Node **26 or newer**. Opt into the new major version explicitly:
+Use Node **26 or newer**. Install the current release:
 
 ```sh
-npm install Particle@next
+npm install Particle
 # Or pin the exact version: npm install Particle@4.0.1
 ```
 
@@ -49,7 +49,7 @@ Each successful call returns an integer from `0` to `Number.MAX_SAFE_INTEGER`. T
 
 ## Two registries. One implementation.
 
-npmjs provides `Particle@4.0.1` under the **`next`** tag; **`latest` remains 3.0.3** so existing default installs keep the legacy version. You can pin `Particle@4.0.1` or deliberately use `Particle@next`.
+npmjs provides `Particle@4.0.1` under both **`latest`** and **`next`**. Default installs select 4.0.1; pin `Particle@3.0.3` explicitly only when maintaining the legacy format. Read the migration guide before updating existing deployments.
 
 The alternative [GitHub Packages build](https://github.com/sschiau/Particle.js/pkgs/npm/particle) is named `@sschiau/particle@4.0.1` and links to this repository through its package metadata. GitHub Packages requires authentication, including for public npm packages. After [authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages), install it with:
 
@@ -178,6 +178,6 @@ python3 -m http.server 8765 --bind 127.0.0.1
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE.md)
 [![Socket score](https://socket.dev/api/badge/npm/package/Particle)](https://socket.dev/npm/package/Particle)
 
-The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v3.0.3**. The exact-Number **4.0.1** implementation is available under **next** on npmjs and as [`@sschiau/particle` on GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). The existing CI and its publishing workflow are unchanged; no release tag is created for this publication.
+The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v4.0.1**. The exact-Number **4.0.1** implementation is available under **latest** and **next** on npmjs and as [`@sschiau/particle` on GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). The existing CI and its publishing workflow remain unchanged.
 
 [Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md). Copyright Silviu Schiau.

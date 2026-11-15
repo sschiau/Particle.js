@@ -17,7 +17,8 @@
 - Update the light mechanics demo to show the actual 40/10/3 counter format without clock/random patching.
 - Replace obsolete duplicate-heavy speed claims with distinct-ID, live-clock, and same-corpus JSON/binary measurements. Add restart/namespace migration guidance.
 - Publish the exact-Number implementation as @sschiau/particle@4.0.1 on GitHub Packages using the separate manual publisher.
-- Publish Particle@4.0.1 to npmjs under next, keeping latest on Particle@3.0.3. Publish the tested archive directly without creating a release tag or changing existing CI.
+- Initially publish Particle@4.0.1 to npmjs under next while retaining latest on Particle@3.0.3, using the tested archive directly.
+- Promote latest to 4.0.1 after separate approval; next remains 4.0.1. Create the v4.0.1 GitHub release with the exact npm archive attached. Existing CI remains unchanged.
 
 ## 3.0.3 — 2026-11-15
 

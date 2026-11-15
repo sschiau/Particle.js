@@ -32,7 +32,7 @@ Binary payload processing was 2.65× faster and 52.9% smaller in this run. It do
 
 [Raw timings, distinct counts, retries, source hashes, and method](results-node26.json) · [Payload protocol](../Examples/PAYLOADS.md) · [Batch helper](../Examples/generate-batch.cjs).
 
-This exact-Number implementation is published as Particle@4.0.1 under npmjs next and as @sschiau/particle@4.0.1 on GitHub Packages. npmjs latest remains Particle@3.0.3. This publication does not create a release tag. Existing CI files/test command are unchanged.
+This exact-Number implementation is published as Particle@4.0.1 under npmjs latest and next and as @sschiau/particle@4.0.1 on GitHub Packages. npmjs latest and next both point to Particle@4.0.1. Existing CI files/test command are unchanged.
 
 ## Deterministic correctness tests
 
