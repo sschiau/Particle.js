@@ -1,24 +1,61 @@
 {
   "name": "Particle",
-  "version": "3.0.3",
-  "description": "64bits int Time Based ID Generator",
-  "repository": "git@github.com:sschiau/Particle.js.git",
-  "homepage": "https://github.com/sschiau/Particle.js",
+  "version": "4.0.0-rc.1",
+  "description": "Exact time-based IDs for JavaScript: BigInt, independent generators, and no runtime dependencies.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sschiau/Particle.js.git"
+  },
+  "homepage": "https://sschiau.github.io/Particle.js/",
   "bugs": "https://github.com/sschiau/Particle.js/issues",
   "author": "Silviu Schiau",
   "license": "Apache-2.0",
   "main": "./Sources/Particle.js",
   "scripts": {
-    "test": "node --test --experimental-test-coverage --test-coverage-include=\"Sources/**/*.js\" --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=93.75 Tests/tests.js Tests/demo-security.test.js"
+    "test": "node --test --experimental-test-coverage --test-coverage-include=\"Sources/**/*.{js,mjs}\" --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=100 Tests/*.test.*",
+    "test:types": "tsc -p Tests/types/tsconfig.json",
+    "test:package": "node Scripts/check-package.mjs",
+    "bench": "node Benchmarks/compare.mjs",
+    "check": "npm test && npm run test:types && npm run test:package && npm audit"
   },
   "dependencies": {},
   "engines": {
     "node": ">=24.22.1 <25 || >=26.13.1 <27"
   },
   "files": [
-    "Sources/Particle.js",
+    "Sources/",
     "README.md",
     "LICENSE.md",
-    "CHANGELOG.md"
-  ]
+    "CHANGELOG.md",
+    "docs/api.md",
+    "docs/migration-v4.md"
+  ],
+  "type": "commonjs",
+  "types": "./Sources/Particle.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./Sources/Particle.d.mts",
+        "default": "./Sources/Particle.mjs"
+      },
+      "require": {
+        "types": "./Sources/Particle.d.cts",
+        "default": "./Sources/Particle.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "id-generator",
+    "snowflake-id",
+    "distributed-id",
+    "bigint",
+    "timestamp",
+    "javascript",
+    "nodejs",
+    "zero-dependency"
+  ],
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
 }
