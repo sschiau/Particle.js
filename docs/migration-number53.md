@@ -1,6 +1,6 @@
-# Migrating to Particle 4.0.1
+# Migrating to Particle 4.x
 
-This is a breaking ID-format change, available as Particle@4.0.1 under npmjs latest and next and as @sschiau/particle@4.0.1 on GitHub Packages. npmjs latest and next both point to Particle@4.0.1; legacy 3.0.3 remains available by explicit version. The method names, mutable singleton, CommonJS/browser globals, machine range, epoch property, and Number return type are retained. That does not make old and new packed values interchangeable.
+This is a breaking ID-format change, available as Particle@4.0.2 under npmjs latest and next and as @sschiau/particle@4.0.1 on GitHub Packages. npmjs latest and next both point to Particle@4.0.2; legacy 3.0.3 remains available by explicit version. The method names, mutable singleton, CommonJS/browser globals, machine range, epoch property, and Number return type are retained. That does not make old and new packed values interchangeable.
 
 | Old v3.0.3 format | New 4.0.1 format |
 | --- | --- |
@@ -21,4 +21,4 @@ This is a breaking ID-format change, available as Particle@4.0.1 under npmjs lat
 
 New generation supports at most 1099511627775 elapsed milliseconds from epoch, about 34.8 years. Plan a new namespace before exhaustion; do not reset an epoch or counter within an existing ID domain.
 
-Particle 4.0.1 is available under npmjs latest and next (`npm install Particle`) and on [GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). Default npmjs installs resolve to 4.0.1. Pin Particle@3.0.3 explicitly when maintaining legacy consumers. The GitHub release tag is v4.0.1; the existing publishing workflow remains unchanged. The new ID format and operational changes require a major-version rollout; the preserved method names do not make this a drop-in patch. Node 26+ is the support policy. Existing CI files remain unchanged.
+Particle 4.0.2 is available under npmjs latest and next (`npm install Particle`) and on [GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). Default npmjs installs resolve to 4.0.2. Version 4.0.2 retains the exact API and ID format introduced in 4.0.1. Pin Particle@3.0.3 explicitly when maintaining legacy consumers. The GitHub Packages alternative and existing GitHub release remain at 4.0.1; the existing publishing workflow remains unchanged. The new ID format and operational changes require a major-version rollout; the preserved method names do not make this a drop-in patch. Node 26+ is the support policy. Existing CI files remain unchanged.

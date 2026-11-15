@@ -34,7 +34,7 @@ The raw source hashes identify the measured 4.0.1 files, before the 4.0.2 versio
 
 [Raw timings, distinct counts, retries, source hashes, and method](results-node26.json) · [Payload protocol](../Examples/PAYLOADS.md) · [Batch helper](../Examples/generate-batch.cjs).
 
-This exact-Number implementation is published as Particle@4.0.1 under npmjs latest and next and as @sschiau/particle@4.0.1 on GitHub Packages. npmjs latest and next both point to Particle@4.0.1. Existing CI files/test command are unchanged.
+npmjs latest and next both provide Particle@4.0.2, with the same generator and codec algorithms as the measured 4.0.1 implementation. The alternative GitHub Packages build remains @sschiau/particle@4.0.1. Existing CI files/test command are unchanged.
 
 ## Deterministic correctness tests
 

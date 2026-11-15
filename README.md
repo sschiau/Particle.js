@@ -11,9 +11,9 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 </div>
 
-> **4.0.2 patch in preparation.** The license/demo fixes and current-year attribution are prepared on this branch; npm still serves 4.0.1. The ID format and API are unchanged from 4.0.1.
+> **4.0.2 security and license patch.** Removes the obsolete demo’s remote script, standardizes Apache-2.0 text and packaged attribution, and updates current copyright notices to 2014–2026. The ID format and API are unchanged from 4.0.1.
 
-> **Breaking ID-format change from v3.** Particle 4.x preserves the method names and Number output, with new packing and operating limits. Default npm installs now select 4.0.1 through `latest`; `next` also points to 4.0.1. Legacy `Particle@3.0.3` uses the old rounded/random format and remains available by explicit version.
+> **Breaking ID-format change from v3.** Particle 4.x preserves the method names and Number output, with new packing and operating limits. Default npm installs select 4.0.2 through `latest`; `next` also points to 4.0.2. Legacy `Particle@3.0.3` uses the old rounded/random format and remains available by explicit version.
 
 ![One elapsed millisecond, machine 1, and counter 0 combine into exact Number ID 8200 using 40 time bits, 10 machine bits, and 3 counter bits.](docs/number53-overview.svg)
 
@@ -21,11 +21,11 @@ JSON by default. Binary when you choose it. Zero runtime dependencies.
 
 ## The API stays familiar.
 
-Use Node **26 or newer**. Install the current published release (4.0.1):
+Use Node **26 or newer**. Install the current release:
 
 ```sh
 npm install Particle
-# Or pin the exact version: npm install Particle@4.0.1
+# Or pin the exact version: npm install Particle@4.0.2
 ```
 
 Then:
@@ -51,7 +51,7 @@ Each successful call returns an integer from `0` to `Number.MAX_SAFE_INTEGER`. T
 
 ## Two registries. One implementation.
 
-npmjs provides `Particle@4.0.1` under both **`latest`** and **`next`**. Default installs select 4.0.1; pin `Particle@3.0.3` explicitly only when maintaining the legacy format. Read the migration guide before updating existing deployments.
+npmjs provides `Particle@4.0.2` under both **`latest`** and **`next`**. Default installs select 4.0.2; pin `Particle@3.0.3` explicitly only when maintaining the legacy format. Read the migration guide before updating existing deployments.
 
 The alternative [GitHub Packages build](https://github.com/sschiau/Particle.js/pkgs/npm/particle) is named `@sschiau/particle@4.0.1` and links to this repository through its package metadata. GitHub Packages requires authentication, including for public npm packages. After [authenticating to GitHub Packages](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-to-github-packages), install it with:
 
@@ -107,7 +107,7 @@ const message = JSON.stringify({ id })
 const receivedId = JSON.parse(message).id
 ```
 
-The original API stays focused on IDs. An optional, separate `binary.js` adapter sends batches as explicitly ordered float64 bytes when both ends agree on the format. Both 4.0.1 packages include that entry; npmjs v3.0.3 does not provide it.
+The original API stays focused on IDs. An optional, separate `binary.js` adapter sends batches as explicitly ordered float64 bytes when both ends agree on the format. Both registries provide that entry; npmjs v3.0.3 does not provide it.
 
 ```js
 // Optional adapter; the main Particle export stays unchanged.
@@ -180,6 +180,6 @@ python3 -m http.server 8765 --bind 127.0.0.1
 [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE.md)
 [![Socket score](https://socket.dev/api/badge/npm/package/Particle)](https://socket.dev/npm/package/Particle)
 
-The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v4.0.1**. The exact-Number **4.0.1** implementation is available under **latest** and **next** on npmjs and as [`@sschiau/particle` on GitHub Packages](https://github.com/sschiau/Particle.js/pkgs/npm/particle). The existing CI and its publishing workflow remain unchanged.
+The npm/Socket badges describe `Particle` on npmjs; the version badge tracks **latest, v4.0.2**. Socket may take time to index new versions. npmjs provides **4.0.2** under **latest** and **next**; the alternative [`@sschiau/particle` GitHub package](https://github.com/sschiau/Particle.js/pkgs/npm/particle) remains at **4.0.1**, with the same API and ID format. The existing CI and its publishing workflow remain unchanged.
 
 [Migration](docs/migration-number53.md) · [Code of conduct](CODE_OF_CONDUCT.md) · [Apache-2.0 license](LICENSE.md) · [Attribution](NOTICE). Copyright 2014–2026 Silviu Schiau.

@@ -1,6 +1,6 @@
 # Particle 4.0.1 security and license review
 
-Reviewed November 15, 2026 against repository commit `d749c39b217cae7dd498f54512adb98ced70703f` and the actual npmjs `Particle@4.0.1` archive. CI and the runtime algorithms are unchanged by these fixes. The follow-up prepares version 4.0.2 and updates current copyright notices to 2014–2026.
+Reviewed November 15, 2026 against repository commit `d749c39b217cae7dd498f54512adb98ced70703f` and the actual npmjs `Particle@4.0.1` archive. CI and the runtime algorithms are unchanged by these fixes. The approved follow-up release is 4.0.2, with current copyright notices updated to 2014–2026.
 
 ## Result
 
@@ -53,6 +53,6 @@ For predictable machine recognition, [LICENSE.md](../LICENSE.md) now matches the
 - Node 26.13.1: 17 tests pass; runtime line/branch/function coverage remains 100%. The new test is in an already executed test file; the npm test command is unchanged.
 - npm audit: zero vulnerabilities. A packed consumer passes; future-package inspection verifies canonical LICENSE.md and NOTICE are actually included.
 - No changes to .github workflows, .travis.yml, or .nvmrc. Runtime modules change only version/header metadata. No new dependencies.
-- npm 4.0.1 and its tags are not changed by this review. The fixes are prepared as 4.0.2, as requested; this branch has not published it. The legacy demo fix reaches the public site when this branch is merged through the existing Pages deployment.
+- The review did not alter the immutable npm 4.0.1 archive. The owner subsequently approved merging PR #13 and publishing 4.0.2 with both latest and next pointing to it. The legacy demo fix deploys through the existing Pages setup. No release tag or CI edit is needed.
 
 Known operational requirements remain documented: IDs are predictable identifiers, not credentials; unique machine allocations, shared epoch namespaces, restart watermarks, and application backpressure are required. The review does not replace those safeguards or claim that a dependency audit detects application-level issues.

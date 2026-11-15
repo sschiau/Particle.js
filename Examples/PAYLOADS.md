@@ -24,7 +24,7 @@ const bytes = encodeNumberPayload(ids)
 const receivedIds = decodeNumberPayload(bytes)
 ```
 
-npmjs Particle@4.0.1 (latest/next) provides this entry as `require('Particle/binary.js')`. GitHub Packages provides it as `require('@sschiau/particle/binary.js')` in version 4.0.1. legacy npmjs Particle@3.0.3 does not provide this entry. The original main export's fields/methods are unchanged; binary helpers are a separate module.
+npmjs Particle@4.0.2 (latest/next) provides this entry as `require('Particle/binary.js')`. GitHub Packages provides it as `require('@sschiau/particle/binary.js')` in version 4.0.1. legacy npmjs Particle@3.0.3 does not provide this entry. The original main export's fields/methods are unchanged; binary helpers are a separate module.
 
 The example uses a local Buffer copy to exercise separate receiver storage. It does not test a network or database. The helper transports ID batches, not arbitrary business-event records. Keep any other payload fields in their current schema until an appropriate complete-record encoding is tested.
 
